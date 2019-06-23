@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1027067604951",
+    "firebase_url": "https://conia-ec2c4.firebaseio.com",
+    "project_id": "conia-ec2c4",
+    "storage_bucket": "conia-ec2c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027067604951:android:1bf7f3224b6acd12",
+        "android_client_info": {
+          "package_name": "com.example.proyectoconia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027067604951-fo6k6lf96qd2gi3la3kalpfskbsno42g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-MQpv41n4koB1HQuJQtarc2VDWntzqjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027067604951-fo6k6lf96qd2gi3la3kalpfskbsno42g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
