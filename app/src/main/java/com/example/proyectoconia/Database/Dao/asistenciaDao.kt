@@ -21,7 +21,7 @@ interface asistenciaDao {
     @Query("SELECT COUNT(*) FROM asistencia_table WHERE fk_asistencia_usuario = :id")
     fun getContAsistencia(id : String): Int
 
-    @Query("SELECT progra._id, progra.numeroDia, progra.fecha, progra.lugar, progra.hora_inicio, progra.hora_fin, progra.descripcion FROM asistencia_table asis, programacion_table progra, usuario_table user WHERE asis.fk_asistencia_usuario = user._id and fk_programacion_asistencia = progra._id and user._id = :id")
+    @Query("SELECT progra._id, progra.numeroDia, progra.fecha, progra.lugar, progra.hora_inicio, progra.hora_fin, progra.descripcion FROM asistencia_table asis, programacion_table progra, usuario_table user WHERE asis.fk_asistencia_usuario = user._id and fk_programacion_asistencia = progra._id and user.correo = :id")
     fun getProgramaAsistencia(id : String): LiveData<List<programacion>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

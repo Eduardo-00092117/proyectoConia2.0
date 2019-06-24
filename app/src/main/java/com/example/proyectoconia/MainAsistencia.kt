@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.proyectoconia.Activities.TercerActivity
@@ -28,6 +29,7 @@ class MainAsistencia : AppCompatActivity(), fragmentAsistencia.OnClickListener {
     override fun onClickSave() {
         var viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
         viewModel.updateoinsertAsistenciaApi(user?.email.toString(), idProgramacion.toString().replace("[", "").replace("]", ""), (4.5).toFloat())
+        Toast.makeText(this, "Se guardo su selección!", Toast.LENGTH_LONG).show()
     }
 
     override fun onClickDeleteListener(programa: programacion) {

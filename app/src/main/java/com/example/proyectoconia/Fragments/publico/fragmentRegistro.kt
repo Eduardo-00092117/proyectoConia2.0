@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.example.proyectoconia.R
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.fragment_fragment_registro.*
 import kotlinx.android.synthetic.main.fragment_fragment_registro.view.*
 import android.widget.AdapterView as AdapterView1
@@ -149,10 +150,14 @@ class fragmentRegistro : Fragment() {
         }
 
         view.btn_registrarse.setOnClickListener {
+            var tipo = sp_tipo.selectedItem.toString()
+            /*if (){
+
+            }*/
             var nombre = view.et_nombre.text.toString()
             var apellido = view.et_apellido.text.toString()
             var correo = view.et_correo.text.toString()
-            var pass = view.et_correo.text.toString()
+            var pass = view.ed_pass2.text.toString()
 
             var genero = sp_genero.selectedItem.toString()
             var pais = sp_pais.selectedItem.toString()
@@ -160,12 +165,11 @@ class fragmentRegistro : Fragment() {
             var carrera = sp_carrera.selectedItem.toString()
             var nivel = sp_nivel.selectedItem.toString()
 
-            if (carrera != "Seleccione una opción" && nivel != "Seleccione una opción"){
+            if (carrera == "Seleccione una opción" && nivel == "Seleccione una opción"){
                 nivel = "Ninguno"
                 carrera = "Ninguna"
             }
 
-            var tipo = sp_tipo.selectedItem.toString()
             var empresa = view.et_empresa.text.toString()
             var formacion = view.et_formacion.text.toString()
             var instituto = view.et_instituto.text.toString()

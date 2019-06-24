@@ -65,11 +65,11 @@ class inicioFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
 
-        viewModel.getProgramaAsistencia("5d0fd54f591df800178513ac").observe(this, Observer { genero ->
+        /*viewModel.getProgramaAsistencia(user?.email.toString()).observe(this, Observer { genero ->
             genero?.let {
                 Log.d("Hola", it.toString())
             }
-        })
+        })*/
 
         viewModel.getAllGaleria().observe(this, Observer { genero ->
             genero?.let {

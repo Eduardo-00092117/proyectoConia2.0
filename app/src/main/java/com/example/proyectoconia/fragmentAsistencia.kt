@@ -16,6 +16,7 @@ import com.example.proyectoconia.Adapters.adapterPrograma
 import com.example.proyectoconia.Database.Entities.programacion
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_fragment_asistencia.*
 import kotlinx.android.synthetic.main.fragment_fragment_asistencia.view.*
 
@@ -59,6 +60,8 @@ class fragmentAsistencia : Fragment() {
 
 
 
+    val auth = FirebaseAuth.getInstance()
+    val user = auth.currentUser
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,13 +75,13 @@ class fragmentAsistencia : Fragment() {
 
         var viewModel = ViewModelProviders.of(activity!!).get(CONIAViewModel::class.java)
 
-        var adapter = adapterAsistencia(emptyList(), {programa -> listener?.onClickAddListener(programa)}, {programa -> listener?.onClickDeleteListener(programa)}, {programa -> listener?.onClickInfo(programa)})
+        var adapter = adapterAsistencia(emptyList(), {programa -> listener?.onClickAddListener(programa)}, {programa -> listener?.onClickDeleteListener(programa)}, {programa -> listener?.onClickInfo(programa)}, emptyList())
 
         view.rv_programacion.adapter = adapter
         view.rv_programacion.layoutManager = LinearLayoutManager(context)
 
         //Segundo recyclerView
-        var adapter2 = adapterAsistencia(emptyList(), {programa -> listener?.onClickAddListener(programa)}, {programa -> listener?.onClickDeleteListener(programa)}, {programa -> listener?.onClickInfo(programa)})
+        var adapter2 = adapterAsistencia(emptyList(), {programa -> listener?.onClickAddListener(programa)}, {programa -> listener?.onClickDeleteListener(programa)}, {programa -> listener?.onClickInfo(programa)}, emptyList())
 
         view.rv_programacion2.adapter = adapter2
         view.rv_programacion2.layoutManager = LinearLayoutManager(context)
@@ -88,21 +91,17 @@ class fragmentAsistencia : Fragment() {
             listener?.onClickSave()
         }
 
-        viewModel.getAllProgramacion("1").observe(this, Observer { ponente ->
-            ponente?.let {adapter.setProgramacion(it)}
-        })
-        viewModel.getAllProgramacion("2").observe(this, Observer { ponente ->
-            ponente?.let {adapter2.setProgramacion(it)}
-        })
+        Log.d("Hola", user?.email.toString())
 
-
-
-        viewModel.getProgramaAsistencia("5d0fd54f591df800178513ac").observe(this, Observer {asistencia ->
-            asistencia?.let { Log.d("Hola", it.toString()) }
-        })
-
-        viewModel.getAllAsistencia().observe(this, Observer {asistencia ->
-            asistencia?.let { Log.d("Hola", "Asistencias: " +it.toString()) }
+        viewModel.getProgramaAsistencia(user?.email.toString()).observe(this, Observer {asistencia ->
+            asistencia?.let { progra ->
+                viewModel.getAllProgramacion("1").observe(this, Observer { ponente ->
+                    ponente?.let {adapter.setProgramacion(it, progra)}
+                })
+                viewModel.getAllProgramacion("2").observe(this, Observer { ponente ->
+                    ponente?.let {adapter2.setProgramacion(it, progra)}
+                })
+            }
         })
 
 

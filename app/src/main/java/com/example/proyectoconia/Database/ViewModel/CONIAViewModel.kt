@@ -3,6 +3,7 @@ package com.example.proyectoconia.Database.ViewModel
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.proyectoconia.Database.Entities.*
 import com.example.proyectoconia.Database.Repository.CONIARepository
@@ -394,5 +395,7 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
         sincronizarAsistencia()
     }
 
-    fun getProgramaAsistencia(id: String) = repository.getProgramaAsistencia(id)
+    fun getProgramaAsistencia(id: String) : LiveData<List<programacion>> {
+        return repository.getProgramaAsistencia(id)
+    }
 }
