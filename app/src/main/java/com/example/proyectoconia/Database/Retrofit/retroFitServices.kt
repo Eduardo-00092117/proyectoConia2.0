@@ -1,5 +1,6 @@
 package com.example.proyectoconia.Database.Retrofit
 
+import com.example.proyectoconia.Database.Entities.asistencia
 import com.example.proyectoconia.Database.Entities.usuario
 import com.example.proyectoconia.Database.ModelsRetrofit.*
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -8,10 +9,7 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 const val HEROKU_API = "https://conia.herokuapp.com/"
 
@@ -59,6 +57,9 @@ interface retroFitServices {
     @GET("/programacion")
     fun getProgramacion() : Deferred<Response<List<modeloProgramacion>>>
 
+    @GET("/asistencia")
+    fun getAsistencia() : Deferred<Response<List<modeloAsistencia>>>
+
     @FormUrlEncoded
     @POST("/usuario")
     fun setUsuario(@Field("nombre") nombre : String,
@@ -73,6 +74,22 @@ interface retroFitServices {
                    @Field("formacion") formacion : String,
                    @Field("institutoEmpresa") institutoEmpresa : String,
                    @Field("tipo") tipo : String) : Call<usuario>
+
+    @FormUrlEncoded
+    @POST("/asistencia")
+    fun setAsistencia(@Field("usuario") usuario : String,
+                   @Field("programacion") programacion : String,
+                   @Field("calificacion") calificacion : Float) : Call<asistencia>
+
+    @DELETE("/asistencia/{id}")
+    fun deleteAsistencia(@Path("id") id : String) : Call<asistencia>
+
+    @FormUrlEncoded
+    @PUT("/asistencia/{id}")
+    fun updateAsistencia(@Path("id") id : String,
+                         @Field("usuario") usuario : String,
+                         @Field("programacion") programacion : String,
+                         @Field("calificacion") calificacion : Float) : Call<asistencia>
 
     companion object {
         fun getRetrofit():retroFitServices{

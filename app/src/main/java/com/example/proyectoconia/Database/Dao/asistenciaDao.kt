@@ -7,17 +7,22 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.Entities.asistencia
+import com.example.proyectoconia.Database.Entities.programacion
+
 @Dao
 interface asistenciaDao {
 
     @Query("SELECT * FROM asistencia_table")
     fun getAllAnsistencia(): LiveData<List<asistencia>>
 
-    @Query("SELECT asis._id , asis.calificacion , asis.fk_asistencia_usuario, asis.fk_programacion_asistencia FROM asistencia_table asis, usuario_table usu, programacion_table prog WHERE asis.fk_asistencia_usuario = usu._id and asis.fk_programacion_asistencia = prog._id and asis._id = :id")
-    fun getOneAsistencia(id: String): LiveData<List<asistencia>>
+    @Query("SELECT * FROM asistencia_table asis WHERE asis.fk_asistencia_usuario = :id")
+    fun getOneAsistencia(id: String): asistencia
 
-    @Query("SELECT COUNT(*) FROM asistencia_table")
-    fun getContAsistencia(): Int
+    @Query("SELECT COUNT(*) FROM asistencia_table WHERE fk_asistencia_usuario = :id")
+    fun getContAsistencia(id : String): Int
+
+    @Query("SELECT progra._id, progra.numeroDia, progra.fecha, progra.lugar, progra.hora_inicio, progra.hora_fin, progra.descripcion FROM asistencia_table asis, programacion_table progra, usuario_table user WHERE asis.fk_asistencia_usuario = user._id and fk_programacion_asistencia = progra._id and user._id = :id")
+    fun getProgramaAsistencia(id : String): LiveData<List<programacion>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAsistencia(new: asistencia)

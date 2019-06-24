@@ -12,8 +12,8 @@ interface usuarioDao {
     @Query("SELECT * FROM usuario_table")
     fun getAllUsuario(): LiveData<List<usuario>>
 
-    @Query("SELECT * FROM usuario_table usuario, genero_table genero, tipo_table tipo, nivel_table nivel, pais_table pais, carrera_table carrera WHERE genero._id= usuario.fk_genero_usuario and tipo._id= usuario.fk_tipo_usuario and carrera._id= usuario.fk_carrera_usuario and pais._id= usuario.fk_pais_usuario and nivel._id = usuario.fk_usuario_nivel and usuario._id= :id")
-    fun getOneUsuario(id: String): LiveData<List<usuario>>
+    @Query("SELECT * FROM usuario_table usuario WHERE usuario.correo= :id")
+    fun getOneUsuario(id: String): usuario
 
     @Query("SELECT COUNT(*) FROM usuario_table")
     fun getContUsuario(): Int

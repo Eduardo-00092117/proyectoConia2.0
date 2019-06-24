@@ -162,6 +162,8 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
 
     fun getAllUsuario() = repository.getAllUsuario()
 
+    fun getOneUsuario(correo : String) = repository.getUnaUsuario(correo)
+
     fun deleteAllUsuario() = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteAllUsuario()
     }
@@ -312,7 +314,7 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
         }
     }
 
-    //---------------------------------------------POGRAMACIÓN---------------------------------------------------------
+    //---------------------------------------------PROGRAMACIÓN---------------------------------------------------------
     fun insertProgramacion(programacion : programacion) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertProgramacion(programacion)
     }
@@ -332,4 +334,65 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
             }
         }
     }
+
+    //---------------------------------------------Asistencia---------------------------------------------------------
+
+    fun getAllAsistencia() = repository.getAllAsistencia()
+
+    fun insertAsistencia(asistencia: asistencia) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertAsistencia(asistencia)
+    }
+
+    fun deleteAllAsistencia() = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteAllAsistencia()
+    }
+
+    fun sincronizarAsistencia() = viewModelScope.launch(Dispatchers.IO) {
+        deleteAllAsistencia()
+        val response = repository.asistenciaAsync().await()
+        if (response!!.isSuccessful) with(response.body()){
+            this?.forEach {
+                it.programacion?.forEach { programacion ->
+                    insertAsistencia(asistencia(0, it._id, it.calificacion, it.usuario[0]._id, programacion._id))
+                }
+            }
+        }
+    }
+
+    fun getOneAsistencia(id : String) = repository.getUnaAsistencia(id)
+
+    fun deleteAsistenciaApi(usuario : String) = viewModelScope.launch(Dispatchers.IO) {
+        var id_usuario = getOneUsuario(usuario)._id
+        val response = repository.deleteAsistenciaApi(getOneAsistencia(id_usuario)._id)
+        if (response.execute().isSuccessful){
+            Log.d("Hola", "SOY LA OSTIA POR QUE YA LO ELIMINA")
+        }
+    }
+
+    fun getContAsistencia(id : String) = repository.getContAsistencia(id)
+
+    fun updateoinsertAsistenciaApi(usuario : String, programa: String, calificacion: Float) = viewModelScope.launch(Dispatchers.IO) {
+        var id_usuario = getOneUsuario(usuario)._id
+        if (programa == "" && getContAsistencia(id_usuario) != 0){
+            val response = repository.deleteAsistenciaApi(getOneAsistencia(id_usuario)._id)
+            if (response.execute().isSuccessful){
+                Log.d("Hola", "SOY LA OSTIA POR QUE YA LO ELIMINA")
+            }
+        } else{
+            if (getContAsistencia(id_usuario) == 0){
+                val response = repository.setAsistenciaApi(id_usuario, programa, calificacion)
+                if (response.execute().isSuccessful){
+                    Log.d("Hola", "SOY LA OSTIA POR QUE YA LO INGRESA")
+                }
+            } else{
+                val response = repository.updateAsistenciaApi(getOneAsistencia(id_usuario)._id, id_usuario, programa, calificacion)
+                if (response.execute().isSuccessful){
+                    Log.d("Hola", "SOY LA OSTIA POR QUE YA LO MODIFICA")
+                }
+            }
+        }
+        sincronizarAsistencia()
+    }
+
+    fun getProgramaAsistencia(id: String) = repository.getProgramaAsistencia(id)
 }

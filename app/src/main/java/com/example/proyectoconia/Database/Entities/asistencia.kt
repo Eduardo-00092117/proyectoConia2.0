@@ -9,7 +9,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "asistencia_table")
 data class asistencia(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    var id_asistencia : Int,
     var _id: String,
     var calificacion: Float,
 
@@ -28,14 +29,15 @@ data class asistencia(
     @ColumnInfo(name = "fk_programacion_asistencia") var fk_programacion_asistencia: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readFloat(),
-        parcel.readString(),
-        parcel.readString()
-    ) {
+            parcel.readInt(),
+            parcel.readString(),
+            parcel.readFloat(),
+            parcel.readString(),
+            parcel.readString()) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id_asistencia)
         parcel.writeString(_id)
         parcel.writeFloat(calificacion)
         parcel.writeString(fk_asistencia_usuario)

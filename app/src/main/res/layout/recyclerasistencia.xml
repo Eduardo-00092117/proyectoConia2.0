@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EEECEC"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_fecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_date_range_black_24dp"
+            android:gravity="center_vertical"
+            android:textSize="16dp"
+            android:textColor="#000"
+            android:text="Hola1"/>
+
+        <TextView
+            android:id="@+id/tv_hora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="16dp"
+            android:drawableLeft="@drawable/ic_access_time_black_24dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:text="Hola1"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:fontFamily="sans-serif-black"
+            android:textSize="24dp"
+            android:text="Titulo"/>
+        <TextView
+            android:id="@+id/tv_lugar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="16dp"
+            android:layout_below="@id/tv_titulo"
+            android:text="Titulo"/>
+        <TextView
+            android:id="@+id/tv_mas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_lugar"
+            android:paddingTop="8dp"
+            android:gravity="right"
+            android:textColor="#009688"
+            android:text="ver mas >>"/>
+        <CheckBox
+            android:id="@+id/cb_asistencia"
+            android:layout_below="@id/tv_mas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Asistire" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -95,6 +95,22 @@ class CONIARepository(
         return retroFitServices.getRetrofit().getProgramacion()
     }
 
+    fun asistenciaAsync() : Deferred<Response<List<modeloAsistencia>>>{
+        return retroFitServices.getRetrofit().getAsistencia()
+    }
+
+    fun setAsistenciaApi(usuario : String, programacion : String, calificacion : Float) : Call<asistencia> {
+        return retroFitServices.getRetrofit().setAsistencia(usuario, programacion, calificacion)
+    }
+
+    fun deleteAsistenciaApi(id : String) : Call<asistencia> {
+        return retroFitServices.getRetrofit().deleteAsistencia(id)
+    }
+
+    fun updateAsistenciaApi(id : String, usuario : String, programacion: String, calificacion: Float) : Call<asistencia> {
+        return retroFitServices.getRetrofit().updateAsistencia(id, usuario, programacion, calificacion)
+    }
+
     //  1-------------------------------------ANOTACION------------------------------
 
     fun getAllAnotacion(): LiveData<List<anotacion>> = Anotacion.getAllAnotacione()
@@ -113,10 +129,13 @@ class CONIARepository(
     @WorkerThread
     suspend fun insertAsistencia(asis: asistencia) = Asistenia.insertAsistencia(asis)
 
-    fun getUnaAsistencia(id: String): LiveData<List<asistencia>> = Asistenia.getOneAsistencia(id)
-    fun getContAsistencia() = Asistenia.getContAsistencia()
+    fun getUnaAsistencia(id: String): asistencia = Asistenia.getOneAsistencia(id)
+    fun getContAsistencia(id : String) = Asistenia.getContAsistencia(id)
     fun deleteAllAsistencia() = Asistenia.deleteAllAsistencia()
     fun deleteOneAsistencia(id: String) = Asistenia.deleteOneAsistencia(id)
+
+    fun getProgramaAsistencia(id : String): LiveData<List<programacion>> = Asistenia.getProgramaAsistencia(id)
+
     //  3-------------------------------------CARRERA---------------------------------
     fun getAllCarrera(): LiveData<List<carrera>> = Carrera.getAllCarrera()
 
@@ -284,7 +303,7 @@ class CONIARepository(
         @WorkerThread
         suspend fun insertUsuario(carr: usuario) = Usuario.insertUsuario(carr)
 
-    fun getUnaUsuario(id: String): LiveData<List<usuario>> = Usuario.getOneUsuario(id)
+    fun getUnaUsuario(id: String): usuario= Usuario.getOneUsuario(id)
     fun getContUsuario() =  Usuario.getContUsuario()
     fun deleteAllUsuario() = Usuario.deleteUsuario()
     fun deleteOneUsuario(id: String) = Usuario.deleteOneUsuario(id)

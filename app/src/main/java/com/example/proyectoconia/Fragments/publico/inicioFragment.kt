@@ -16,6 +16,7 @@ import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.example.proyectoconia.Activities.MainActivity
 import com.example.proyectoconia.R
 import com.example.proyectoconia.Activities.loginActivity
+import com.example.proyectoconia.MainAsistencia
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_inicio.*
 import kotlinx.android.synthetic.main.fragment_inicio.view.*
@@ -64,35 +65,7 @@ class inicioFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
 
-        viewModel.sincronizarInformacion()
-
-        viewModel.sincronizarGenero()
-
-        viewModel.sincronizarPais()
-
-        viewModel.sincronizarCarrera()
-
-        viewModel.sincronizarNivel()
-
-        viewModel.sincronizarTipo()
-
-        viewModel.sincronizarUsuario()
-
-        viewModel.sincronizarFecha()
-
-        viewModel.sincronizarPatrocinio()
-
-        viewModel.sincronizarCurso()
-
-        viewModel.sincronizarGaleria()
-
-        viewModel.sincronizarContacto()
-
-        viewModel.sincronizarPonente()
-
-        viewModel.sincronizarProgramacion()
-
-        viewModel.getAllProgramacion("1").observe(this, Observer { genero ->
+        viewModel.getProgramaAsistencia("5d0fd54f591df800178513ac").observe(this, Observer { genero ->
             genero?.let {
                 Log.d("Hola", it.toString())
             }
@@ -105,7 +78,7 @@ class inicioFragment : Fragment() {
                     Glide.with(this)
                         .load(it[0].imagen)
                         .fitCenter()
-                        .placeholder(R.drawable.ic_launcher_background)
+                        .placeholder(R.drawable.load)
                         .into(view.app_bar_image_viewer)
                 }
             }
@@ -119,6 +92,10 @@ class inicioFragment : Fragment() {
 
         }
 
+
+        view.tv_check.setOnClickListener {
+            startActivity(Intent(activity, MainAsistencia::class.java))
+        }
 
         view.tv_iniciar.setOnClickListener {
             if (user?.email != null) {
