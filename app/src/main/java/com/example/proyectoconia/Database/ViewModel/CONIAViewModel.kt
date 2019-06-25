@@ -44,6 +44,27 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
 
     //----------------------------------------------TEMATICA----------------------------------------------------
 
+    fun insertTematica(tematica: tematica) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertTematica(tematica)
+    }
+
+    fun deleteAllTematica() = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteAllTematica()
+    }
+
+    fun getAllTematica() = repository.getAllTematica()
+
+    fun sincronizarTematica() = viewModelScope.launch{(Dispatchers.IO)
+        deleteAllTematica()
+        val response = repository.tematicaAsync().await()
+        if (response!!.isSuccessful) with(response.body()?.Search){
+            this?.forEach{
+                insertTematica(it)
+            }
+        }
+    }
+
+
 
 
     //----------------------------------------------ANOTACION----------------------------------------------------
