@@ -60,6 +60,10 @@ class CONIARepository(
         return retroFitServices.getRetrofit().updateAnotacion(id,titulo,fecha,archivo,usuario,programacion)
     }
 
+    fun deleteAnotacionApi(id : String) : Call<anotacion>{
+        return retroFitServices.getRetrofit().deleteAnotacion(id)
+    }
+
     fun generoAsync() : Deferred<Response<retroGenero>>{
         return retroFitServices.getRetrofit().getGenero()
     }
@@ -135,7 +139,7 @@ class CONIARepository(
 
     //  1-------------------------------------ANOTACION------------------------------
 
-    fun getAllAnotacion(): LiveData<List<anotacion>> = Anotacion.getAllAnotacione()
+    fun getAllAnotacion(correo : String): LiveData<List<anotacion>> = Anotacion.getAllAnotacione(correo)
     @WorkerThread
     suspend fun insertAnotacion(anot: anotacion) = Anotacion.insertAnotacion(anot)
 
@@ -290,6 +294,10 @@ class CONIARepository(
     fun deleteOnePonentxProgra(id: String) = PonenteXProgramacion.deleteOnePonenteXProgramacion(id)
     //  16-------------------------------------PROGRAMACION------------------------------
     fun getAllProgramacion(dia : String): LiveData<List<programacion>> = Programacion.getAllProgramacion(dia)
+
+    fun getAllProgramacion2() : LiveData<List<programacion>> = Programacion.getAllProgramacion2()
+
+    fun getOneProgramacion2(id: String) : LiveData<programacion> = Programacion.getOneProgramacion2(id)
 
     @WorkerThread
     suspend fun insertProgramacion(carr: programacion) = Programacion.insertProgramacion(carr)

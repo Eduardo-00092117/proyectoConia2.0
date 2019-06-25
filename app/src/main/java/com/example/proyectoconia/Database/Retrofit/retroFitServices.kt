@@ -96,6 +96,9 @@ interface retroFitServices {
                         @Field("usuario")usuario: String,
                         @Field("programacion")programacion: String):Call<anotacion>
 
+    @DELETE("/anotacion/{id}")
+    fun deleteAnotacion(@Path("id") id : String) : Call<anotacion>
+
     @FormUrlEncoded
     @POST("/asistencia")
     fun setAsistencia(@Field("usuario") usuario : String,

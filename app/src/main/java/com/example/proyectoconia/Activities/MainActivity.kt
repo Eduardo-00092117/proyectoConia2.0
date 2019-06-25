@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.example.proyectoconia.*
+import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.Entities.ponente
 import com.example.proyectoconia.Database.Entities.programacion
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
@@ -23,7 +24,19 @@ import kotlinx.android.synthetic.main.fragment_inicio.*
 
 class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionListener, programaFragment.OnActionListener, ponenteFragment.onClickListener,
         fragment_info_programa.OnActionListener, fragment_info_ponente.OnActionListener, fragmentAsistencia.OnClickListener,
-    fragment_anotacion.OnFragmentInteractionListener {
+    fragment_anotacion.OnFragmentInteractionListener, anotacionFragment.OnClickListener {
+
+    lateinit var viewModel : CONIAViewModel
+
+    override fun onClickListenerDelete(anotacion: anotacion) {
+        viewModel.deleteAnotacionApi(anotacion._id)
+    }
+
+    override fun onClickListener(anotacion: anotacion) {
+        var intent = Intent(this, ActivityAnotacion::class.java)
+        intent.putExtra(constantes.UNA_ANOTACION, anotacion)
+        startActivity(intent)
+    }
 
     val auth = FirebaseAuth.getInstance()
     val user = auth.currentUser
@@ -81,7 +94,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
-        var viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
 
         var connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
@@ -117,6 +130,8 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
             viewModel.sincronizarProgramacion()
 
             viewModel.sincronizarAsistencia()
+
+            viewModel.sincronizarAnotacion()
         } else{
             Toast.makeText(this, "No hay conexion a internet!!!", Toast.LENGTH_LONG).show()
         }

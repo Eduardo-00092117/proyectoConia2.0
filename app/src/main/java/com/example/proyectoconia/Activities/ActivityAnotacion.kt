@@ -3,8 +3,11 @@ package com.example.proyectoconia.Activities
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.R
 import com.example.proyectoconia.Fragments.publico.fragment_anotacion
+import com.example.proyectoconia.constantes
 import kotlinx.android.synthetic.main.actionsecond.*
 
 class ActivityAnotacion : AppCompatActivity(),
@@ -17,12 +20,18 @@ class ActivityAnotacion : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anotacion)
 
+        var intent = intent.getParcelableExtra<anotacion>(constantes.UNA_ANOTACION)
+
+        var fragment = fragment_anotacion()
+
+        if (intent != null){
+            fragment = fragment_anotacion.newInstance(intent)
+        }
+
         supportFragmentManager.beginTransaction().replace(
             R.id.anotacion_linear_layout,
-            fragment_anotacion()
+            fragment
         ).commit()
-
-        tv_name_activity.text="Anotacion"
 
         tv_back.setOnClickListener {
             onBackPressed()

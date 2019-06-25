@@ -3,6 +3,7 @@ package com.example.proyectoconia.Fragments.publico
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,12 +16,11 @@ import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.example.proyectoconia.R
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.actionsecond.*
 import kotlinx.android.synthetic.main.fragment_fragment_anotacion.*
 import kotlinx.android.synthetic.main.fragment_fragment_anotacion.view.*
-import java.util.Calendar
-
-
-
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -54,6 +54,14 @@ class fragment_anotacion : Fragment() {
         }
     }
 
+    companion object {
+        fun newInstance(anotacion: anotacion) : fragment_anotacion{
+            var intent = fragment_anotacion()
+            intent.anotacion = anotacion
+            return intent
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,8 +74,9 @@ class fragment_anotacion : Fragment() {
 
         var adapterProgramacion = ArrayAdapter<String>(context,android.R.layout.simple_list_item_1)
 
+        adapterProgramacion.add("Seleccione una opción")
 
-        viewModel.getAllProgramacion("1").observe(this, Observer {
+        viewModel.getAllProgramacion2().observe(this, Observer {
                 progra ->
             progra.let{
                 it.forEach {
@@ -77,23 +86,52 @@ class fragment_anotacion : Fragment() {
             }
         })
 
+        if (activity?.tv_name_activity != null){
+            if(anotacion==null){
+                activity?.tv_name_activity?.text="Agregar anotación"
+            } else{
+                activity?.tv_name_activity?.text="Modificar anotación"
+            }
+        }
+
         if(anotacion!=null){
-            view.tv_change.text = "Update"
+            view.btn_guardarAnotacion.text = "Modificar"
 
             view.titulo_anotacion.setText(anotacion?.titulo)
 
             view.et_archivo.setText(anotacion?.archivo)
+
+            viewModel.getOneProgramacion2(anotacion?.fk_programacion_anotacion.toString()).observe(this, Observer { progra ->
+                progra?.let {
+                    var posicion = adapterProgramacion.getPosition(it.descripcion)
+                    sp_programacion.setSelection(posicion)
+                }
+            })
         }
         view.btn_guardarAnotacion.setOnClickListener {
             var titulo = view.titulo_anotacion.text.toString()
             //var spUser = sp_usuario.selectedItem.toString()
             var spProgra = sp_programacion.selectedItem.toString()
             var archivo = view.et_archivo.text.toString()
-            val currentTime = Calendar.getInstance().time.toString()
 
-            user?.email?.let { it1 -> viewModel.setAnotacionApi(titulo,currentTime,archivo, it1,spProgra) }
+            var date = SimpleDateFormat("dd/MM/yyyy - hh:mm a")
+            val currentTime = date.format(Date())
 
-            Toast.makeText(this.context, "Anotacion ingresada", Toast.LENGTH_LONG).show()
+            if (titulo != "" && archivo != "" && sp_programacion.selectedItemPosition != 0){
+                if (anotacion == null){
+                    viewModel.setAnotacionApi(titulo,currentTime,archivo, user?.email.toString(),spProgra)
+
+                    Toast.makeText(this.context, "Anotacion ingresada", Toast.LENGTH_LONG).show()
+                } else{
+                    viewModel.updateAnotacionApi(anotacion?._id.toString(), titulo,currentTime,archivo, user?.email.toString(),spProgra)
+
+                    Toast.makeText(this.context, "Anotacion modificada", Toast.LENGTH_LONG).show()
+                }
+
+                activity?.onBackPressed()
+            } else{
+                Toast.makeText(this.context, "Debe llenar todos los campos!", Toast.LENGTH_LONG).show()
+            }
         }
         return view
     }
@@ -131,25 +169,5 @@ class fragment_anotacion : Fragment() {
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment fragment_anotacion.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            fragment_anotacion().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

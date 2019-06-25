@@ -18,9 +18,18 @@ import kotlinx.android.synthetic.main.actionsecond.*
 import kotlinx.android.synthetic.main.activity_second_main.*
 
 
-class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, programaFragment.OnActionListener, SwipeRefreshLayout.OnRefreshListener, anotacionFragment.OnFragmentInteractionListener{
-    override fun onFragmentInteraction(anotacion: anotacion) {
-        startActivity(Intent(this, ActivityAnotacion::class.java))
+class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, programaFragment.OnActionListener, SwipeRefreshLayout.OnRefreshListener, anotacionFragment.OnClickListener{
+    private lateinit var viewModel : CONIAViewModel
+    private var getIntent : Int = 0
+
+    override fun onClickListenerDelete(anotacion: anotacion) {
+        viewModel.deleteAnotacionApi(anotacion._id)
+    }
+
+    override fun onClickListener(anotacion: anotacion) {
+        var intent = Intent(this, ActivityAnotacion::class.java)
+        intent.putExtra(constantes.UNA_ANOTACION, anotacion)
+        startActivity(intent)
     }
 
     override fun listenerFunction(ponente: ponente) {
@@ -36,9 +45,6 @@ class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, program
         intent.putExtra(constantes.VENTANA_PONENTE_PROGRAMACION, 0)
         startActivity(intent)
     }
-
-    private lateinit var viewModel : CONIAViewModel
-    private var getIntent : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

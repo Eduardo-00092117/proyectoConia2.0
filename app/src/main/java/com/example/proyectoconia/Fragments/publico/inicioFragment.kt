@@ -84,33 +84,22 @@ class inicioFragment : Fragment() {
             }
         })
         if (user?.email != null) {
-            view.tv_iniciar.text = "salir"
-            view.btn_anotacion.text = "Anotacion"
-            view.tv_iniciar.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.iconsalidapuerta,0,0)
+            view.tv_iniciar.visibility = View.GONE
+            view.btn_anotacion.visibility = View.VISIBLE
+            view.tv_salir.visibility = View.VISIBLE
         } else {
 
             view.tv_iniciar.text = "Iniciar Sesion"
 
         }
 
-
-        view.tv_check.setOnClickListener {
-            startActivity(Intent(activity, MainAsistencia::class.java))
+        view.tv_salir.setOnClickListener {
+            auth.signOut()
+            startActivity(Intent(context, MainActivity::class.java))
         }
 
         view.tv_iniciar.setOnClickListener {
-            if (user?.email != null) {
-                view.tv_iniciar.text = "salir"
-
-                auth.signOut()
-                startActivity(Intent(context, MainActivity::class.java))
-
-
-            } else {
-
-                startActivity(Intent(context, loginActivity::class.java))
-
-            }
+            startActivity(Intent(context, loginActivity::class.java))
         }
 
 

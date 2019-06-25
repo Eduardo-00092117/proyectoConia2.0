@@ -4,10 +4,14 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethod
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -151,13 +155,12 @@ class fragmentRegistro : Fragment() {
 
         view.btn_registrarse.setOnClickListener {
             var tipo = sp_tipo.selectedItem.toString()
-            /*if (){
 
-            }*/
             var nombre = view.et_nombre.text.toString()
             var apellido = view.et_apellido.text.toString()
             var correo = view.et_correo.text.toString()
-            var pass = view.ed_pass2.text.toString()
+            var pass = view.ed_pass.text.toString()
+            var pass2 = view.ed_pass2.text.toString()
 
             var genero = sp_genero.selectedItem.toString()
             var pais = sp_pais.selectedItem.toString()
@@ -165,7 +168,7 @@ class fragmentRegistro : Fragment() {
             var carrera = sp_carrera.selectedItem.toString()
             var nivel = sp_nivel.selectedItem.toString()
 
-            if (carrera == "Seleccione una opción" && nivel == "Seleccione una opción"){
+            if (carrera == "Seleccione una opción" && nivel == "Seleccione una opción" && sp_tipo.selectedItemPosition == 1){
                 nivel = "Ninguno"
                 carrera = "Ninguna"
             }
@@ -174,13 +177,55 @@ class fragmentRegistro : Fragment() {
             var formacion = view.et_formacion.text.toString()
             var instituto = view.et_instituto.text.toString()
 
-            viewModel.setUsuarioApi(nombre, apellido, pass, correo, genero, pais, carrera, nivel, empresa, formacion, instituto, tipo)
 
-            registrar(correo,nombre)
+            if (nombre != "" && apellido != "" && correo != "" && pass != "" && pass2 != "" && genero != "Seleccione una opción" &&
+                    pais != "Seleccione una opción"){
+
+                var bandera = 0
+                if(sp_tipo.selectedItemPosition == 2){
+                    if (carrera == "Seleccione una opción" || nivel == "Seleccione una opción"){
+                        bandera = 1
+                    }
+                }
+
+                if (bandera == 0){
+                    if (validarCorreo(correo)){
+                        if (pass == pass2){
+                            if (pass.length >= 6){
+
+                                viewModel.setUsuarioApi(nombre, apellido, pass, correo, genero, pais, carrera, nivel, empresa, formacion, instituto, tipo)
+
+                                registrar(correo,nombre)
+
+                                Toast.makeText(context, "Registro completado", Toast.LENGTH_LONG).show()
+
+                                activity!!.onBackPressed()
+
+                            } else{
+                                Toast.makeText(context, "La contraseña debe contener un minimo de 6 caracteres!", Toast.LENGTH_LONG).show()
+                            }
+                        } else{
+                            Toast.makeText(context, "Las contraseñas deben coincidir", Toast.LENGTH_LONG).show()
+                        }
+                    } else{
+                        Toast.makeText(context, "El formato del correo no es valido!", Toast.LENGTH_LONG).show()
+                    }
+                } else{
+                    Toast.makeText(context, "Debe completar todos los campos obligatorios!", Toast.LENGTH_LONG).show()
+                }
+
+            } else{
+                Toast.makeText(context, "Debe completar todos los campos obligatorios!", Toast.LENGTH_LONG).show()
+            }
 
         }
 
         return view
+    }
+
+    fun validarCorreo(correo : String) : Boolean{
+        var pattern = Patterns.EMAIL_ADDRESS
+        return pattern.matcher(correo).matches()
     }
 
     fun formulario(nombre : Int, apellido : Int, correo : Int, genero : Int, pais : Int, carrera : Int, nivel : Int, empresa : Int,

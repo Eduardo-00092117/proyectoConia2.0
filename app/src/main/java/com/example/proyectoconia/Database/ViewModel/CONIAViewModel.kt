@@ -40,15 +40,21 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
             generoDao, informacionDao, nivelDao, paisDao, patrocinioDao, ponenteDao, ponenteXprogramacionDao, programacionDao, tematicaDao,
             tipoDao, usuarioDao)
     }
+
+
+    //----------------------------------------------TEMATICA----------------------------------------------------
+
+
+
     //----------------------------------------------ANOTACION----------------------------------------------------
 
     fun insertAnotacion(anotacion:anotacion) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertAnotacion(anotacion)
     }
 
-    fun getAllAnotacion()=repository.getAllAnotacion()
+    fun getAllAnotacion(correo : String)= repository.getAllAnotacion(correo)
 
-    fun deleteAllAnotacion()=viewModelScope.launch(Dispatchers.IO) {
+    fun deleteAllAnotacion()= viewModelScope.launch(Dispatchers.IO) {
         repository.deleteAllAnotacion()
     }
 
@@ -58,7 +64,6 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
         if(response!!.isSuccessful) with (response.body()){
             this?.forEach{
                 insertAnotacion(anotacion(it._id, it.titulo,it.fecha,it.archivo,it.usuario[0]._id,it.programacion[0]._id))
-                //insertAnotacion(it)
             }
         }
     }
@@ -71,16 +76,30 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
             if(response.execute().isSuccessful){
                 Log.d("insertar","Inserto la anotacion")
             }
+            sincronizarAnotacion()
         }
 
     fun updateAnotacionApi(id:String,titulo:String,fecha:String,archivo:String,usuario:String,programacion: String)=
         viewModelScope.launch(Dispatchers.IO){
-            val response = repository.updateAnotacionApi(getOneUsuario(id)._id,titulo,fecha,archivo,
+            val response = repository.updateAnotacionApi(id,titulo,fecha,archivo,
                 getOneUsuario(usuario)._id,getOneProgramacion(programacion)._id)
             if(response.execute().isSuccessful){
                 Log.d("update","Actualizo")
             }
+            sincronizarAnotacion()
         }
+
+    fun deleteAnotacionApi(id : String) = viewModelScope.launch(Dispatchers.IO) {
+        val response = repository.deleteAnotacionApi(id)
+        if (response.execute().isSuccessful){
+            Log.d("Hola", "SOY LA OSTIA POR QUE YA LO ELIMINA")
+        }
+        sincronizarAnotacion()
+    }
+
+
+
+
 
     //----------------------------------------------INFORMACION--------------------------------------------------
     fun insertInfo(info : informacion) = viewModelScope.launch(Dispatchers.IO) {
@@ -367,14 +386,32 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
 
     fun getAllProgramacion(dia : String) = repository.getAllProgramacion(dia)
 
+    fun getAllProgramacion2() = repository.getAllProgramacion2()
+
     fun getOneProgramacion(nombre: String) = repository.getUnaProgramacion(nombre)
+
+    fun getOneProgramacion2(id : String) = repository.getOneProgramacion2(id)
+
+    fun insertProgramacionxPonente(ponenteXprogramacion: ponenteXprogramacion) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertPonentxProgra(ponenteXprogramacion)
+    }
+
+    fun deleteProgramacionxPonente() = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteAllPonentxProgra()
+    }
+
+    fun getPonentes(id : String) = repository.getUnaPonentxProgra(id)
 
     fun sincronizarProgramacion() = viewModelScope.launch{(Dispatchers.IO)
         deleteAllProgramacion()
+        deleteProgramacionxPonente()
         val response = repository.programacionAsync().await()
         if (response!!.isSuccessful) with(response.body()){
             this?.forEach{
                 insertProgramacion(programacion(it._id, it.numeroDia, it.fecha, it.lugar, it.hora_inicio, it.hora_fin, it.descripcion))
+                it.ponente.forEach { ponente ->
+                    insertProgramacionxPonente(ponenteXprogramacion(ponente._id, it._id))
+                }
             }
         }
     }

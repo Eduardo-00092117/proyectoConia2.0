@@ -52,16 +52,11 @@ class loginActivity : AppCompatActivity() {
                         Log.d("loginx", "HEY: ${auth.currentUser?.email}")
                         var intent = Intent(this, MainActivity::class.java)
                         intent.putExtra("id", auth.currentUser?.email)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         startActivity(intent)
-                        if (auth != null) {
-                            Log.d("loginx", "User SIGNED")
-                            Toast.makeText(this, "Inicio sesion", Toast.LENGTH_LONG).show()
-                        } else {
-                            Log.d("loginx", "User NO SIGNED")
-                            Toast.makeText(this, "No se inicio sesion", Toast.LENGTH_LONG).show()
-                        }
+                        finish()
                     } else {
-                        Toast.makeText(this, "Contrase;a/usuario incorrecto", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Contraseña /usuario incorrecto", Toast.LENGTH_LONG).show()
                     }
                 })
         }else{

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectoconia.Activities.ActivityAnotacion
@@ -16,6 +17,7 @@ import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.example.proyectoconia.R
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.content_main2.view.*
 import kotlinx.android.synthetic.main.fragment_anotacion.view.*
 
 
@@ -27,7 +29,7 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [anotacionFragment.OnFragmentInteractionListener] interface
+ * [anotacionFragment.OnClickListener] interface
  * to handle interaction events.
  * Use the [anotacionFragment.newInstance] factory method to
  * create an instance of this fragment.
@@ -37,7 +39,7 @@ class anotacionFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
+    private var listener: OnClickListener? = null
 
     val auth = FirebaseAuth.getInstance()
     val user = auth.currentUser
@@ -50,6 +52,12 @@ class anotacionFragment : Fragment() {
         }
     }
 
+    interface OnClickListener {
+        // TODO: Update argument type and name
+        fun onClickListener(anotacion: anotacion)
+        fun onClickListenerDelete(anotacion: anotacion)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,9 +67,9 @@ class anotacionFragment : Fragment() {
 
         var viewModel = ViewModelProviders.of(activity!!).get(CONIAViewModel::class.java)
 
-        var adapter = adapterAnotacion(emptyList(),{anotacion->(listener?.onFragmentInteraction(anotacion))})
+        var adapter = adapterAnotacion(emptyList(),{anotacion->(listener?.onClickListener(anotacion))}, {anotacion->(listener?.onClickListenerDelete(anotacion))})
 
-        view.btn_nueva_anotacion.setOnClickListener {
+        view.fab_agregar.setOnClickListener {
             startActivity(Intent(this.context, ActivityAnotacion::class.java))
         }
 
@@ -71,7 +79,7 @@ class anotacionFragment : Fragment() {
             view.rv_anotacion.adapter = adapter
             view.rv_anotacion.layoutManager = LinearLayoutManager(context)
 
-            viewModel.getAllAnotacion().observe(this,androidx.lifecycle.Observer {
+            viewModel.getAllAnotacion(user?.email.toString()).observe(this, Observer {
                 anotacion->anotacion?.let { adapter.setAnotacion(it) }
             })
 
@@ -86,7 +94,7 @@ class anotacionFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
+        if (context is OnClickListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
@@ -109,10 +117,6 @@ class anotacionFragment : Fragment() {
      * (http://developer.android.com/training/basics/fragments/communicating.html)
      * for more information.
      */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(anotacion: anotacion)
-    }
 
     companion object {
         /**

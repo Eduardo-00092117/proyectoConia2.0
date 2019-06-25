@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".Fragments.publico.anotacionFragment">
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main2Activity">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="vertical"
-                  android:gravity="center"
-                  android:layout_height="match_parent">
+    <include layout="@layout/content_main2" />
 
-        <Button android:layout_width="wrap_content"
-                android:text="Nueva anotacion"
-                android:id="@+id/btn_nueva_anotacion"
-                android:layout_height="wrap_content"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/add"
+            tools:ignore="VectorDrawableCompat" />
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_anotacion"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-    </LinearLayout>
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

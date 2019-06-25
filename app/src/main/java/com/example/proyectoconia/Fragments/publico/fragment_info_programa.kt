@@ -2,11 +2,15 @@ package com.example.proyectoconia.Fragments.publico
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.proyectoconia.Database.Entities.programacion
+import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.example.proyectoconia.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_fragment_info_programa.view.*
@@ -41,6 +45,25 @@ class fragment_info_programa : Fragment() {
         view.tv_lugar.text = "Lugar: "  + programa?.lugar
         view.tv_fecha.text = "Fecha: "  +programa?.fecha
         view.tv_hora.text = "Hora: "  + programa?.hora_inicio + " - " + programa?.hora_fin
+
+        var viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
+
+        Log.d("Hola", programa?._id.toString())
+
+        var ponentes = ""
+
+        viewModel.getPonentes(programa?._id.toString()).observe(this, Observer { ponente ->
+            ponente?.let { lista ->
+                lista.forEach {
+                    ponentes += "- " + it.nombre + "\n"
+                }
+            }
+            if (ponentes == ("- ninguno" + "\n")){
+                view.tv_ponentes.text = "Información de ponentes no disponible"
+            } else{
+                view.tv_ponentes.text = ponentes
+            }
+        })
 
         if (activity?.mostrarinformacion != null){
             view.tv_cerrar.visibility = View.VISIBLE

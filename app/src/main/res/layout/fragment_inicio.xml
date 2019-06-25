@@ -214,7 +214,8 @@
                 <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                     <TextView
                             android:id="@+id/tv_iniciar"
@@ -228,6 +229,19 @@
                             android:onClick="click"
                             android:text="Iniciar Sesión"/>
 
+                    <TextView
+                        android:id="@+id/btn_anotacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom|center_horizontal"
+                        android:padding="8dp"
+                        android:textSize="16dp"
+                        android:visibility="gone"
+                        android:drawableTop="@drawable/information"
+                        android:textColor="#000"
+                        android:onClick="click"
+                        android:text="Anotaciones"/>
+
                 </LinearLayout>
                 <LinearLayout
                         android:layout_width="0dp"
@@ -235,16 +249,17 @@
                         android:layout_weight="1">
 
                     <TextView
-                        android:id="@+id/tv_check"
+                        android:id="@+id/tv_salir"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="bottom|center_horizontal"
-                        android:drawableTop="@drawable/iconloginsession"
+                        android:drawableTop="@drawable/iconsalidapuerta"
                         android:padding="8dp"
                         android:textSize="16dp"
+                        android:visibility="gone"
                         android:textColor="#000"
                         android:onClick="click"
-                        android:text="Iniciar Sesión"/>
+                        android:text="Cerrar Sesión"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -259,16 +274,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
-                    <TextView
-                            android:id="@+id/btn_anotacion"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="bottom|center_horizontal"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:textColor="#000"
-                            android:onClick="click"
-                            android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                         android:layout_width="0dp"

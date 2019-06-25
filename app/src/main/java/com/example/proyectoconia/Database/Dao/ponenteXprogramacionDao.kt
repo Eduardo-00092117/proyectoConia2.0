@@ -9,7 +9,7 @@ import com.example.proyectoconia.Database.Entities.ponente
 import com.example.proyectoconia.Database.Entities.ponenteXprogramacion
 @Dao
 interface ponenteXprogramacionDao {
-    @Query("SELECT pt._id, pt.foto, pt.nombre, pt.descripcion, pt.destacado FROM ponente_x_programacion_table pxp, ponentes_table pt, programacion_table pot WHERE pxp.id_programacionx = pot._id and pxp.id_ponentesx = pt._id and pxp.id_programacionx= :id")
+    @Query("SELECT pt._id, pt.foto, pt.nombre, pt.descripcion, pt.destacado FROM ponente_x_programacion_table pxp, ponentes_table pt, programacion_table pot WHERE pxp.id_programacionx = pot._id and pxp.id_ponentesx = pt._id and pxp.id_programacionx= :id ORDER BY pt.nombre")
     fun getOnePonenteXProgramacion(id: String): LiveData<List<ponente>>
 
     @Query("SELECT COUNT(*) FROM ponente_x_programacion_table")

@@ -15,7 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Tipo"/>
+            android:text="(*) Campos Obligatorios"
+            android:gravity="right"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text="Tipo (*)"/>
 
         <Spinner
             android:id="@+id/sp_tipo"
@@ -27,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Nombres"/>
+            android:text="Nombres (*)"/>
 
         <EditText
             android:id="@+id/et_nombre"
@@ -39,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Apellidos"/>
+            android:text="Apellidos (*)"/>
 
         <EditText
             android:id="@+id/et_apellido"
@@ -51,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Correo"/>
+            android:text="Correo (*)"/>
 
         <EditText
             android:id="@+id/et_correo"
@@ -63,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Genero"/>
+            android:text="Genero (*)"/>
 
         <Spinner
             android:id="@+id/sp_genero"
@@ -75,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Pais"/>
+            android:text="Pais (*)"/>
 
         <Spinner
             android:id="@+id/sp_pais"
@@ -87,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Carrera"/>
+            android:text="Carrera (*)"/>
 
         <Spinner
             android:id="@+id/sp_carrera"
@@ -99,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Nivel"/>
+            android:text="Nivel (*)"/>
 
         <Spinner
             android:id="@+id/sp_nivel"
@@ -123,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Formación"/>
+            android:text="Formación (*)"/>
 
         <EditText
             android:id="@+id/et_formacion"
@@ -135,7 +143,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000"
-            android:text="Institucion/Empresa"/>
+            android:text="Institucion/Empresa (*)"/>
 
         <EditText
             android:id="@+id/et_instituto"
@@ -155,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:text="Contraseña"/>
+                android:text="Contraseña (*)"/>
             <EditText
                 android:id="@+id/ed_pass"
                 android:layout_width="match_parent"
@@ -165,7 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:text="Confirmas contraseña"/>
+                android:text="Confirmas contraseña (*)"/>
             <EditText
                 android:id="@+id/ed_pass2"
                 android:layout_width="match_parent"
