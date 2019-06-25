@@ -91,8 +91,6 @@ class fragmentAsistencia : Fragment() {
             listener?.onClickSave()
         }
 
-        Log.d("Hola", user?.email.toString())
-
         viewModel.getProgramaAsistencia(user?.email.toString()).observe(this, Observer {asistencia ->
             asistencia?.let { progra ->
                 viewModel.getAllProgramacion("1").observe(this, Observer { ponente ->
