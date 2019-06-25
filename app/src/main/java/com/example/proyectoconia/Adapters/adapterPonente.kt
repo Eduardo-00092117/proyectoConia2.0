@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.proyectoconia.Database.Entities.ponente
 import com.example.proyectoconia.Fragments.publico.ponenteFragment
 import com.example.proyectoconia.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recyclerponente.view.*
 
 class adapterPonente(var ponente : List<ponente>, var clickListener: (ponente) -> Unit) : RecyclerView.Adapter<adapterPonente.ViewHolder>() {
@@ -29,9 +30,8 @@ class adapterPonente(var ponente : List<ponente>, var clickListener: (ponente) -
 
             view.tv_nombre_ponente.text = ponente.nombre
 
-            Glide.with(itemView.context)
-                    .load(ponente.foto)
-                    .placeholder(R.drawable.ic_launcher_background)
+            Picasso.get().load(ponente.foto)
+                    .placeholder(R.drawable.load)
                     .into(view.iv_foto_ponente)
 
             view.setOnClickListener {

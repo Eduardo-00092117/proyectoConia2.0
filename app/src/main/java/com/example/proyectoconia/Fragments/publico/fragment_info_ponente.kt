@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.proyectoconia.Database.Entities.*
 import com.example.proyectoconia.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_fragment_info_ponente.view.*
 
@@ -41,9 +42,8 @@ class fragment_info_ponente : Fragment() {
 
         Log.d("ponentex","Esta es: ${ponente?.nombre}")
 
-        Glide.with(view.context)
-                .load(ponente?.foto)
-                .placeholder(R.drawable.ic_launcher_background)
+        Picasso.get().load(ponente?.foto)
+                .placeholder(R.drawable.load)
                 .into(view.iv_foto_ponente)
 
         view.tv_descripcion.text = ponente?.descripcion

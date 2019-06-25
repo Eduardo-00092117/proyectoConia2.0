@@ -9,6 +9,7 @@ import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.Entities.tematica
 import com.example.proyectoconia.Fragments.publico.ponenteFragment
 import com.example.proyectoconia.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recyclertematica.view.*
 
 class adapterTematica(var tematica: List<tematica>, var clickListener: (tematica)->Unit):RecyclerView.Adapter<adapterTematica.ViewHolder>(){
@@ -30,9 +31,8 @@ class adapterTematica(var tematica: List<tematica>, var clickListener: (tematica
 
             view.tv_nombre_tematica.text = tematica.titulo
 
-            Glide.with(itemView.context)
-                .load(tematica.imagen)
-                .placeholder(R.drawable.ic_launcher_background)
+            Picasso.get().load(tematica.imagen)
+                .placeholder(R.drawable.load)
                 .into(view.iv_foto_tematica)
 
             view.setOnClickListener {

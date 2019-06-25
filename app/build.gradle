@@ -87,6 +87,7 @@ dependencies {
     //TODO
     implementation 'com.google.firebase:firebase-core:16.0.0'
     implementation 'com.google.firebase:firebase-auth:16.0.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 
 }

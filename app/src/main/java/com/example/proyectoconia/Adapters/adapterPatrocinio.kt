@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyectoconia.Database.Entities.patrocinio
 import com.example.proyectoconia.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recyclerpatrociniocurso.view.*
 
 class adapterPatrocinio(var patrocinio : List<patrocinio>) : RecyclerView.Adapter<adapterPatrocinio.ViewHolder>() {
@@ -26,11 +27,7 @@ class adapterPatrocinio(var patrocinio : List<patrocinio>) : RecyclerView.Adapte
     class ViewHolder(var view : View) : RecyclerView.ViewHolder(view){
         fun onBind(patrocinio : patrocinio){
             view.tv_titulo.text = patrocinio.nombre
-
-            Glide.with(itemView.context)
-                    .load(patrocinio.imagen)
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .into(view.iv_banner)
+            Picasso.get().load(patrocinio.imagen).placeholder(R.drawable.load).into(view.iv_banner)
 
         }
     }

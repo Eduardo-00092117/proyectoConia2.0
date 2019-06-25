@@ -18,6 +18,7 @@ import com.example.proyectoconia.R
 import com.example.proyectoconia.Activities.loginActivity
 import com.example.proyectoconia.MainAsistencia
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_inicio.*
 import kotlinx.android.synthetic.main.fragment_inicio.view.*
 
@@ -75,9 +76,8 @@ class inicioFragment : Fragment() {
             genero?.let {
                 tv_usuario.text = user?.email
                 if (it.size > 0) {
-                    Glide.with(this)
+                    Picasso.get()
                         .load(it[0].imagen)
-                        .fitCenter()
                         .placeholder(R.drawable.load)
                         .into(view.app_bar_image_viewer)
                 }

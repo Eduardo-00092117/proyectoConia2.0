@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyectoconia.Database.Entities.contacto
 import com.example.proyectoconia.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recyclercontacto.view.*
 
 class adapterContacto(var contacto : List<contacto>) : RecyclerView.Adapter<adapterContacto.ViewHolder>() {
@@ -28,9 +29,8 @@ class adapterContacto(var contacto : List<contacto>) : RecyclerView.Adapter<adap
             view.tv_titulo.text = contacto.titulo
             view.tv_descripcion.text = contacto.descripcion
 
-            Glide.with(itemView.context)
-                    .load(contacto.imagen)
-                    .placeholder(R.drawable.ic_launcher_background)
+            Picasso.get().load(contacto.imagen)
+                    .placeholder(R.drawable.load)
                     .into(view.iv_icono)
 
         }

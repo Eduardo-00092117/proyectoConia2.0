@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.proyectoconia.Database.Entities.tematica
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_fragment_info_tematica.view.*
 
@@ -51,9 +52,8 @@ class fragment_info_tematica : Fragment() {
 
         Log.d("tematicax","Esta es: ${tematica?.titulo}")
 
-        Glide.with(view.context)
-            .load(tematica?.imagen)
-            .placeholder(R.drawable.ic_launcher_background)
+        Picasso.get().load(tematica?.imagen)
+            .placeholder(R.drawable.load)
             .into(view.iv_foto_tematica)
 
 

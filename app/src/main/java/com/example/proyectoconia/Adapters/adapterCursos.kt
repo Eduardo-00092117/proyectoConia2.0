@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyectoconia.Database.Entities.curso
 import com.example.proyectoconia.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recyclerpatrociniocurso.view.*
 
 class adapterCursos(var curso : List<curso>) : RecyclerView.Adapter<adapterCursos.ViewHolder>() {
@@ -28,9 +29,8 @@ class adapterCursos(var curso : List<curso>) : RecyclerView.Adapter<adapterCurso
 
             view.tv_titulo.text = curso.titulo
 
-            Glide.with(itemView.context)
-                    .load(curso.imagen)
-                    .placeholder(R.drawable.ic_launcher_background)
+            Picasso.get().load(curso.imagen)
+                    .placeholder(R.drawable.load)
                     .into(view.iv_banner)
 
         }
