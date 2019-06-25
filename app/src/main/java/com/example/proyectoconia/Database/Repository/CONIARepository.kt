@@ -51,6 +51,15 @@ class CONIARepository(
         return retroFitServices.getRetrofit().setAnotacion(titulo,fecha,archivo,usuario,programacion)
     }
 
+    fun updateAnotacionApi(id:String
+                           ,titulo: String,
+                           fecha: String,
+                           archivo: String,
+                           usuario: String,
+                           programacion: String):Call<anotacion>{
+        return retroFitServices.getRetrofit().updateAnotacion(id,titulo,fecha,archivo,usuario,programacion)
+    }
+
     fun generoAsync() : Deferred<Response<retroGenero>>{
         return retroFitServices.getRetrofit().getGenero()
     }

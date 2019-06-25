@@ -1,22 +1,26 @@
-package com.example.proyectoconia
+package com.example.proyectoconia.Fragments.publico
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.proyectoconia.Adapters.adapterAnotacion
 import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
+import com.example.proyectoconia.R
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_anotacion.view.*
-import java.util.Observer
+import kotlinx.android.synthetic.main.fragment_fragment_anotacion.*
+import kotlinx.android.synthetic.main.fragment_fragment_anotacion.view.*
+import java.util.Calendar
+
+
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,20 +31,20 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [anotacionFragment.OnFragmentInteractionListener] interface
+ * [fragment_anotacion.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [anotacionFragment.newInstance] factory method to
+ * Use the [fragment_anotacion.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class anotacionFragment : Fragment() {
+class fragment_anotacion : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
-
+    var anotacion : anotacion?=null
     val auth = FirebaseAuth.getInstance()
     val user = auth.currentUser
+    private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,34 +59,49 @@ class anotacionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view =  inflater.inflate(R.layout.fragment_anotacion, container, false)
+        var view =  inflater.inflate(R.layout.fragment_fragment_anotacion, container, false)
 
-        var viewModel = ViewModelProviders.of(activity!!).get(CONIAViewModel::class.java)
+        var viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
 
-        var adapter = adapterAnotacion(emptyList(),{anotacion->(listener?.onFragmentInteraction(anotacion))})
 
-        view.btn_nueva_anotacion.setOnClickListener {
-            startActivity(Intent(this.context,ActivityAnotacion::class.java))
+        var adapterProgramacion = ArrayAdapter<String>(context,android.R.layout.simple_list_item_1)
+
+
+        viewModel.getAllProgramacion("1").observe(this, Observer {
+                progra ->
+            progra.let{
+                it.forEach {
+                        dato-> adapterProgramacion.add(dato.descripcion)
+                }
+                view.sp_programacion.adapter = adapterProgramacion
+            }
+        })
+
+        if(anotacion!=null){
+            view.tv_change.text = "Update"
+
+            view.titulo_anotacion.setText(anotacion?.titulo)
+
+            view.et_archivo.setText(anotacion?.archivo)
         }
+        view.btn_guardarAnotacion.setOnClickListener {
+            var titulo = view.titulo_anotacion.text.toString()
+            //var spUser = sp_usuario.selectedItem.toString()
+            var spProgra = sp_programacion.selectedItem.toString()
+            var archivo = view.et_archivo.text.toString()
+            val currentTime = Calendar.getInstance().time.toString()
 
-        if(user?.email!=null){
-            Log.d("quepedo","EN EL IFFFF")
+            user?.email?.let { it1 -> viewModel.setAnotacionApi(titulo,currentTime,archivo, it1,spProgra) }
 
-            view.rv_anotacion.adapter = adapter
-            view.rv_anotacion.layoutManager = LinearLayoutManager(context)
-
-            viewModel.getAllAnotacion().observe(this,androidx.lifecycle.Observer {
-                anotacion->anotacion?.let { adapter.setAnotacion(it) }
-            })
-
-
-        } else{
-            Log.d("holi","Nothing to show")
+            Toast.makeText(this.context, "Anotacion ingresada", Toast.LENGTH_LONG).show()
         }
-
         return view
     }
 
+    // TODO: Rename method, update argument and hook method into UI event
+    fun onButtonPressed(uri: Uri) {
+        listener?.onFragmentInteraction(uri)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -111,7 +130,7 @@ class anotacionFragment : Fragment() {
      */
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onFragmentInteraction(anotacion: anotacion)
+        fun onFragmentInteraction(uri: Uri)
     }
 
     companion object {
@@ -121,12 +140,12 @@ class anotacionFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment anotacionFragment.
+         * @return A new instance of fragment fragment_anotacion.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            anotacionFragment().apply {
+            fragment_anotacion().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

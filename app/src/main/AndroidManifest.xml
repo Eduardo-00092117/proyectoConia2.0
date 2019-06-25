@@ -14,7 +14,7 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:usesCleartextTraffic="true">
-        <activity android:name=".ActivityAnotacion">
+        <activity android:name=".Activities.ActivityAnotacion">
         </activity>
         <activity android:name=".MainAsistencia"/>
         <activity android:name=".Activities.TercerActivity"/>

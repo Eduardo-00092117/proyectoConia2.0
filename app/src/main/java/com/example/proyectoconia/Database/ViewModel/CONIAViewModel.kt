@@ -73,6 +73,14 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
             }
         }
 
+    fun updateAnotacionApi(id:String,titulo:String,fecha:String,archivo:String,usuario:String,programacion: String)=
+        viewModelScope.launch(Dispatchers.IO){
+            val response = repository.updateAnotacionApi(getOneUsuario(id)._id,titulo,fecha,archivo,
+                getOneUsuario(usuario)._id,getOneProgramacion(programacion)._id)
+            if(response.execute().isSuccessful){
+                Log.d("update","Actualizo")
+            }
+        }
 
     //----------------------------------------------INFORMACION--------------------------------------------------
     fun insertInfo(info : informacion) = viewModelScope.launch(Dispatchers.IO) {

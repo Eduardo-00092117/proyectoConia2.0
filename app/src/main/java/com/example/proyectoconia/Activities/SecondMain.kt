@@ -1,20 +1,18 @@
 package com.example.proyectoconia.Activities
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.proyectoconia.ActivityAnotacion
 import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.Entities.ponente
 import com.example.proyectoconia.Database.Entities.programacion
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.example.proyectoconia.Fragments.publico.*
 import com.example.proyectoconia.R
-import com.example.proyectoconia.anotacionFragment
+import com.example.proyectoconia.Fragments.publico.anotacionFragment
 import com.example.proyectoconia.constantes
 import kotlinx.android.synthetic.main.actionsecond.*
 import kotlinx.android.synthetic.main.activity_second_main.*
@@ -22,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_second_main.*
 
 class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, programaFragment.OnActionListener, SwipeRefreshLayout.OnRefreshListener, anotacionFragment.OnFragmentInteractionListener{
     override fun onFragmentInteraction(anotacion: anotacion) {
-        startActivity(Intent(this,ActivityAnotacion::class.java))
+        startActivity(Intent(this, ActivityAnotacion::class.java))
     }
 
     override fun listenerFunction(ponente: ponente) {
@@ -83,7 +81,9 @@ class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, program
                 nombre = "Contactanos"
             }
             8 -> {
-                supportFragmentManager.beginTransaction().replace(R.id.principal,anotacionFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.principal,
+                    anotacionFragment()
+                ).commit()
                 nombre = "Anotacion"
             }
         }

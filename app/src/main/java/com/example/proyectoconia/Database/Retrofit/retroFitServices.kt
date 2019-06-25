@@ -88,6 +88,15 @@ interface retroFitServices {
                      @Field("programacion") programacion:String) :Call<anotacion>
 
     @FormUrlEncoded
+    @PUT("/anotacion/{id}")
+    fun updateAnotacion(@Path("id")id:String,
+                        @Field("titulo")titulo:String,
+                        @Field("fecha")fecha:String,
+                        @Field("archivo") archivo: String,
+                        @Field("usuario")usuario: String,
+                        @Field("programacion")programacion: String):Call<anotacion>
+
+    @FormUrlEncoded
     @POST("/asistencia")
     fun setAsistencia(@Field("usuario") usuario : String,
                    @Field("programacion") programacion : String,

@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".fragment_anotacion">
+              tools:context=".Fragments.publico.fragment_anotacion">
 
     <LinearLayout android:layout_width="match_parent"
                   android:orientation="vertical"
@@ -29,6 +29,7 @@
         </Spinner>
         <EditText android:layout_width="match_parent"
                   android:id="@+id/et_archivo"
+                  android:hint="Escriba su anotacion"
                   android:layout_height="100dp"/>
         <Button android:layout_width="wrap_content"
                 android:text="Save"
