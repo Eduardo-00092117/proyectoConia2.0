@@ -146,6 +146,7 @@
                               android:padding="8dp"
                               android:textSize="16dp"
                               android:textColor="#000"
+                              android:drawableTop="@drawable/tematicat"
                               android:onClick="click"
                               android:text="Tematicas"
                               android:layout_height="wrap_content"/>
@@ -252,7 +253,7 @@
                             android:padding="8dp"
                             android:textSize="16dp"
                             android:visibility="gone"
-                            android:drawableTop="@drawable/information"
+                            android:drawableTop="@drawable/anotacionest"
                             android:textColor="#000"
                             android:onClick="click"
                             android:text="Anotaciones"/>

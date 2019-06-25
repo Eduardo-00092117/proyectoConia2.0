@@ -8,18 +8,15 @@
 
     <application
             android:allowBackup="true"
-            android:icon="@mipmap/icon"
+            android:icon="@mipmap/iconologo"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/icon"
+            android:roundIcon="@mipmap/iconologo"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:usesCleartextTraffic="true">
         <activity android:name=".ActivityTematica">
         </activity>
-        <activity
-                android:name=".Main2Activity"
-                android:label="@string/title_activity_main2"
-                android:theme="@style/NoActionBar"/>
+
         <activity android:name=".Activities.ActivityAnotacion"/>
         <activity android:name=".MainAsistencia"/>
         <activity android:name=".Activities.TercerActivity"/>
