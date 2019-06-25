@@ -145,10 +145,10 @@ class fragmentRegistro : Fragment() {
                     formulario(invisible, invisible, invisible, invisible, invisible, invisible, invisible, invisible, invisible, invisible)
                 }else if (position == 1){
                     limpiarCampos()
-                    formulario(visible, visible, visible, visible, visible, invisible, invisible, visible, visible, visible)
+                    formulario(visible, visible, visible, visible, visible, invisible, invisible, invisible, visible, visible)
                 } else if(position == 2){
                     limpiarCampos()
-                    formulario(visible, visible, visible, visible, visible, visible, visible, invisible, invisible, visible)
+                    formulario(visible, visible, visible, visible, visible, visible, visible, visible, invisible, invisible)
                 }
             }
         }
@@ -186,6 +186,10 @@ class fragmentRegistro : Fragment() {
                     if (carrera == "Seleccione una opción" || nivel == "Seleccione una opción"){
                         bandera = 1
                     }
+                } else if (sp_tipo.selectedItemPosition == 1){
+                    if (formacion == "" || instituto == ""){
+                        bandera = 1
+                    }
                 }
 
                 if (bandera == 0){
@@ -195,7 +199,7 @@ class fragmentRegistro : Fragment() {
 
                                 viewModel.setUsuarioApi(nombre, apellido, pass, correo, genero, pais, carrera, nivel, empresa, formacion, instituto, tipo)
 
-                                registrar(correo,nombre)
+                                registrar(correo,pass2)
 
                                 Toast.makeText(context, "Registro completado", Toast.LENGTH_LONG).show()
 
