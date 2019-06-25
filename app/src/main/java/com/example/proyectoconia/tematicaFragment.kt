@@ -53,7 +53,7 @@ class tematicaFragment : Fragment() {
 
         var viewModel = ViewModelProviders.of(activity!!).get(CONIAViewModel::class.java)
 
-        var adapter = adapterTematica(emptyList(),{tematica -> (listener?.onFragmentInteraction(tematica))})
+        var adapter = adapterTematica(emptyList(),{tematica -> (listener?.onFragment_tematica_Interaction(tematica))})
 
         view.rv_tematica.adapter=adapter
         view.rv_tematica.layoutManager = LinearLayoutManager(context)
@@ -93,7 +93,7 @@ class tematicaFragment : Fragment() {
      */
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onFragmentInteraction(tematica: tematica)
+        fun onFragment_tematica_Interaction(tematica: tematica)
     }
 
     companion object {

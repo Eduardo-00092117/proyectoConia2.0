@@ -2,6 +2,7 @@ package com.example.proyectoconia.Fragments.publico
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,8 @@ class fragment_info_ponente : Fragment() {
         var view = inflater.inflate(R.layout.fragment_fragment_info_ponente, container, false)
 
         view.tv_nombre.text = ponente?.nombre
+
+        Log.d("ponentex","Esta es: ${ponente?.nombre}")
 
         Glide.with(view.context)
                 .load(ponente?.foto)

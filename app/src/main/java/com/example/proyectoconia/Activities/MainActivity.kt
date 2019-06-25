@@ -25,9 +25,26 @@ import kotlinx.android.synthetic.main.fragment_inicio.*
 
 class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionListener, programaFragment.OnActionListener, ponenteFragment.onClickListener,
         fragment_info_programa.OnActionListener, fragment_info_ponente.OnActionListener, fragmentAsistencia.OnClickListener,
-    fragment_anotacion.OnFragmentInteractionListener, anotacionFragment.OnClickListener,tematicaFragment.OnFragmentInteractionListener {
-    override fun onFragmentInteraction(tematica: tematica) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fragment_anotacion.OnFragmentInteractionListener, anotacionFragment.OnClickListener,tematicaFragment.OnFragmentInteractionListener,fragment_info_tematica.OnFragmentInteractionListener {
+
+    override fun onClickListener2() {
+        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, ponenteFragment()). commit()
+    }
+
+    override fun listenerFunction(ponente: ponente) {
+        var fragment = fragment_info_ponente.newInstance(ponente)
+
+        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, fragment).commit()
+    }
+
+    override fun onFragmentInteraction_info_tematica() {
+        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,tematicaFragment()).commit()
+    }
+
+    override fun onFragment_tematica_Interaction(tematica: tematica) {
+        var fragment = fragment_info_tematica.newInstance(tematica)
+
+        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,fragment).commit()
     }
 
     lateinit var viewModel : CONIAViewModel
@@ -68,15 +85,6 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
         Log.d("Hola", idProgramacion.toString().replace("[", "").replace("]", ""))
     }
 
-    override fun onClickListener2() {
-        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, ponenteFragment()). commit()
-    }
-
-    override fun listenerFunction(ponente: ponente) {
-        var fragment = fragment_info_ponente.newInstance(ponente)
-
-        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, fragment).commit()
-    }
 
     override fun onClickListener() {
         if (user?.email == null){

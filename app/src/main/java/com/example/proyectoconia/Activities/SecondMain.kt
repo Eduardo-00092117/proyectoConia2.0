@@ -6,6 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.proyectoconia.ActivityTematica
 import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.Entities.ponente
 import com.example.proyectoconia.Database.Entities.programacion
@@ -21,8 +22,10 @@ import kotlinx.android.synthetic.main.activity_second_main.*
 
 
 class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, programaFragment.OnActionListener, SwipeRefreshLayout.OnRefreshListener, anotacionFragment.OnClickListener,tematicaFragment.OnFragmentInteractionListener{
-    override fun onFragmentInteraction(tematica: tematica) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onFragment_tematica_Interaction(tematica: tematica) {
+        var intent = Intent(this, ActivityTematica::class.java)
+        intent.putExtra(constantes.UNA_TEMATICA, tematica)
+        startActivity(intent)
     }
 
     private lateinit var viewModel : CONIAViewModel
