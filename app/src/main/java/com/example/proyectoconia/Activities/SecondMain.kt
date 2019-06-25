@@ -6,19 +6,28 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.proyectoconia.ActivityTematica
 import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.Entities.ponente
 import com.example.proyectoconia.Database.Entities.programacion
+import com.example.proyectoconia.Database.Entities.tematica
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.example.proyectoconia.Fragments.publico.*
 import com.example.proyectoconia.R
 import com.example.proyectoconia.Fragments.publico.anotacionFragment
 import com.example.proyectoconia.constantes
+import com.example.proyectoconia.tematicaFragment
 import kotlinx.android.synthetic.main.actionsecond.*
 import kotlinx.android.synthetic.main.activity_second_main.*
 
 
-class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, programaFragment.OnActionListener, SwipeRefreshLayout.OnRefreshListener, anotacionFragment.OnClickListener{
+class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, programaFragment.OnActionListener, SwipeRefreshLayout.OnRefreshListener, anotacionFragment.OnClickListener,tematicaFragment.OnFragmentInteractionListener{
+    override fun onFragment_tematica_Interaction(tematica: tematica) {
+        var intent = Intent(this, ActivityTematica::class.java)
+        intent.putExtra(constantes.UNA_TEMATICA, tematica)
+        startActivity(intent)
+    }
+
     private lateinit var viewModel : CONIAViewModel
     private var getIntent : Int = 0
 
@@ -91,6 +100,10 @@ class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, program
                     anotacionFragment()
                 ).commit()
                 nombre = "Anotacion"
+            }
+            9 ->{
+                supportFragmentManager.beginTransaction().replace(R.id.principal,tematicaFragment()).commit()
+                nombre = "Tematica"
             }
         }
         tv_name_activity.text = nombre

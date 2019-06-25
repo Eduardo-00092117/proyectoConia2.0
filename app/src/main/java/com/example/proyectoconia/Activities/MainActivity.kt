@@ -14,6 +14,7 @@ import com.example.proyectoconia.*
 import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.Entities.ponente
 import com.example.proyectoconia.Database.Entities.programacion
+import com.example.proyectoconia.Database.Entities.tematica
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.example.proyectoconia.Fragments.publico.*
 import com.example.proyectoconia.Fragments.publico.fragment_info_ponente
@@ -24,7 +25,27 @@ import kotlinx.android.synthetic.main.fragment_inicio.*
 
 class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionListener, programaFragment.OnActionListener, ponenteFragment.onClickListener,
         fragment_info_programa.OnActionListener, fragment_info_ponente.OnActionListener, fragmentAsistencia.OnClickListener,
-    fragment_anotacion.OnFragmentInteractionListener, anotacionFragment.OnClickListener {
+    fragment_anotacion.OnFragmentInteractionListener, anotacionFragment.OnClickListener,tematicaFragment.OnFragmentInteractionListener,fragment_info_tematica.OnFragmentInteractionListener {
+
+    override fun onClickListener2() {
+        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, ponenteFragment()). commit()
+    }
+
+    override fun listenerFunction(ponente: ponente) {
+        var fragment = fragment_info_ponente.newInstance(ponente)
+
+        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, fragment).commit()
+    }
+
+    override fun onFragmentInteraction_info_tematica() {
+        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,tematicaFragment()).commit()
+    }
+
+    override fun onFragment_tematica_Interaction(tematica: tematica) {
+        var fragment = fragment_info_tematica.newInstance(tematica)
+
+        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,fragment).commit()
+    }
 
     lateinit var viewModel : CONIAViewModel
 
@@ -64,15 +85,6 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
         Log.d("Hola", idProgramacion.toString().replace("[", "").replace("]", ""))
     }
 
-    override fun onClickListener2() {
-        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, ponenteFragment()). commit()
-    }
-
-    override fun listenerFunction(ponente: ponente) {
-        var fragment = fragment_info_ponente.newInstance(ponente)
-
-        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, fragment).commit()
-    }
 
     override fun onClickListener() {
         if (user?.email == null){
@@ -132,6 +144,8 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
             viewModel.sincronizarAsistencia()
 
             viewModel.sincronizarAnotacion()
+
+            viewModel.sincronizarTematica()
         } else{
             Toast.makeText(this, "No hay conexion a internet!!!", Toast.LENGTH_LONG).show()
         }
@@ -156,6 +170,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
             tv_progra -> fragment = 6
             tv_contact -> fragment = 7
             btn_anotacion->fragment = 8
+            eje_tematico -> fragment = 9
             tv_iniciar -> startActivity(Intent(this, loginActivity::class.java))
         }
 
@@ -178,7 +193,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
                 8 -> supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,
                     anotacionFragment()
                 ).commit()
-
+                9-> supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,tematicaFragment()).commit()
             }
         } else {
             if (fragment != 0) {

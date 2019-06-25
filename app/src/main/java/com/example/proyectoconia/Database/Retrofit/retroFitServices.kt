@@ -19,6 +19,9 @@ interface retroFitServices {
     @GET("/informacion")
     fun getInformacion() : Deferred<Response<retroInformacion>>
 
+    @GET("/tematica")
+    fun getTematica():Deferred<Response<retroTematica>>
+
     @GET("/anotacion")
     fun getAnotacion() : Deferred<Response<List<modeloAnotacion>>>
 

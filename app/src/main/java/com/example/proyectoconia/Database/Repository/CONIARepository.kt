@@ -117,6 +117,10 @@ class CONIARepository(
         return retroFitServices.getRetrofit().getPonente()
     }
 
+    fun tematicaAsync():Deferred<Response<retroTematica>>{
+        return retroFitServices.getRetrofit().getTematica()
+    }
+
     fun programacionAsync() : Deferred<Response<List<modeloProgramacion>>>{
         return retroFitServices.getRetrofit().getProgramacion()
     }
