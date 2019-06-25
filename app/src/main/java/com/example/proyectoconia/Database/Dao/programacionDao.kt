@@ -13,7 +13,7 @@ interface programacionDao {
     @Query("SELECT * FROM programacion_table WHERE numeroDia = :dia ORDER BY fecha ASC, hora_inicio ASC")
     fun getAllProgramacion(dia : String): LiveData<List<programacion>>
 
-    @Query("SELECT * FROM programacion_table WHERE  _id= :id")
+    @Query("SELECT * FROM programacion_table WHERE  descripcion= :id")
     fun getOneProgramacion(id: String): programacion
 
     @Query("SELECT COUNT(*) FROM programacion_table")

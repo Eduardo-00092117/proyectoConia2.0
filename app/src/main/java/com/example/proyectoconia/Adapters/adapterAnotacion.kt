@@ -26,7 +26,7 @@ class adapterAnotacion(var anotacion : List<anotacion>, var clickListener:(anota
     class ViewHolder (var view : View) : RecyclerView.ViewHolder(view) {
         fun onBind(anotacion: anotacion, clickListener: (anotacion) -> Unit){
             view.tv_titulo_anotacion.text = anotacion.titulo
-            view.tv_ponencia_anotacion.text = anotacion.fk_programacion_anotacion
+            view.tv_ponencia_anotacion.text = anotacion.archivo
             view.tv_hora_fecha_anotacion.text = anotacion.fecha
 
             view.setOnClickListener {
