@@ -1,5 +1,6 @@
 package com.example.proyectoconia.Database.Retrofit
 
+import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.Entities.asistencia
 import com.example.proyectoconia.Database.Entities.usuario
 import com.example.proyectoconia.Database.ModelsRetrofit.*
@@ -17,6 +18,9 @@ interface retroFitServices {
 
     @GET("/informacion")
     fun getInformacion() : Deferred<Response<retroInformacion>>
+
+    @GET("/anotacion")
+    fun getAnotacion() : Deferred<Response<List<modeloAnotacion>>>
 
     @GET("/genero")
     fun getGenero() : Deferred<Response<retroGenero>>
@@ -74,6 +78,14 @@ interface retroFitServices {
                    @Field("formacion") formacion : String,
                    @Field("institutoEmpresa") institutoEmpresa : String,
                    @Field("tipo") tipo : String) : Call<usuario>
+
+    @FormUrlEncoded
+    @POST("/anotacion")
+    fun setAnotacion(@Field("titulo") titulo:String,
+                     @Field("fecha") fecha:String,
+                     @Field("archivo") archivo:String,
+                     @Field("usuario") usuario:String,
+                     @Field("programacion") programacion:String) :Call<anotacion>
 
     @FormUrlEncoded
     @POST("/asistencia")

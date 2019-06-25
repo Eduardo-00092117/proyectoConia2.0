@@ -1,25 +1,20 @@
-package com.example.proyectoconia.Fragments.publico
+package com.example.proyectoconia
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.bumptech.glide.Glide
+import com.example.proyectoconia.Database.Entities.anotacion
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
-import com.example.proyectoconia.Activities.MainActivity
-import com.example.proyectoconia.R
-import com.example.proyectoconia.Activities.loginActivity
-import com.example.proyectoconia.MainAsistencia
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_inicio.*
-import kotlinx.android.synthetic.main.fragment_inicio.view.*
+import kotlinx.android.synthetic.main.fragment_fragment_anotacion.*
+import kotlinx.android.synthetic.main.fragment_fragment_anotacion.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,19 +25,20 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [inicioFragment.OnFragmentInteractionListener] interface
+ * [fragment_anotacion.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [inicioFragment.newInstance] factory method to
+ * Use the [fragment_anotacion.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class inicioFragment : Fragment() {
+class fragment_anotacion : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
+    var anotacion : anotacion?=null
     val auth = FirebaseAuth.getInstance()
     val user = auth.currentUser
+    private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,74 +48,46 @@ class inicioFragment : Fragment() {
         }
     }
 
-
-    lateinit var viewModel: CONIAViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
+        var view =  inflater.inflate(R.layout.fragment_fragment_anotacion, container, false)
+
+        var viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
 
 
-        var view = inflater.inflate(R.layout.fragment_inicio, container, false)
+        var adapterProgramacion = ArrayAdapter<String>(context,android.R.layout.simple_list_item_1)
 
-        viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
 
-        /*viewModel.getProgramaAsistencia(user?.email.toString()).observe(this, Observer { genero ->
-            genero?.let {
-                Log.d("Hola", it.toString())
-            }
-        })*/
-
-        viewModel.getAllGaleria().observe(this, Observer { genero ->
-            genero?.let {
-                tv_usuario.text = user?.email
-                if (it.size > 0) {
-                    Glide.with(this)
-                        .load(it[0].imagen)
-                        .fitCenter()
-                        .placeholder(R.drawable.load)
-                        .into(view.app_bar_image_viewer)
+        viewModel.getAllProgramacion("1").observe(this, Observer {
+                progra ->
+            progra.let{
+                it.forEach {
+                        dato-> adapterProgramacion.add(dato.descripcion)
                 }
+                view.sp_programacion.adapter = adapterProgramacion
             }
         })
-        if (user?.email != null) {
-            view.tv_iniciar.text = "salir"
-            view.btn_anotacion.text = "Anotacion"
-            view.tv_iniciar.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.iconsalidapuerta,0,0)
-        } else {
 
-            view.tv_iniciar.text = "Iniciar Sesion"
+        if(anotacion!=null){
+            view.tv_change.text = "Update"
 
+            view.titulo_anotacion.setText(anotacion?.titulo)
+
+            view.et_archivo.setText(anotacion?.archivo)
         }
+        view.btn_guardarAnotacion.setOnClickListener {
+            var titulo = view.titulo_anotacion.text.toString()
+            //var spUser = sp_usuario.selectedItem.toString()
+            var spProgra = sp_programacion.selectedItem.toString()
+            var archivo = view.et_archivo.text.toString()
 
-
-        view.tv_check.setOnClickListener {
-            startActivity(Intent(activity, MainAsistencia::class.java))
+            user?.email?.let { it1 -> viewModel.setAnotacionApi(titulo,"",archivo, it1,spProgra) }
         }
-
-        view.tv_iniciar.setOnClickListener {
-            if (user?.email != null) {
-                view.tv_iniciar.text = "salir"
-
-                auth.signOut()
-                startActivity(Intent(context, MainActivity::class.java))
-
-
-            } else {
-
-                startActivity(Intent(context, loginActivity::class.java))
-
-            }
-        }
-
-
-
-
-
         return view
     }
-
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
@@ -163,12 +131,12 @@ class inicioFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment inicioFragment.
+         * @return A new instance of fragment fragment_anotacion.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            inicioFragment().apply {
+            fragment_anotacion().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

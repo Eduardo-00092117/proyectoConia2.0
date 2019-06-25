@@ -40,6 +40,39 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
             generoDao, informacionDao, nivelDao, paisDao, patrocinioDao, ponenteDao, ponenteXprogramacionDao, programacionDao, tematicaDao,
             tipoDao, usuarioDao)
     }
+    //----------------------------------------------ANOTACION----------------------------------------------------
+
+    fun insertAnotacion(anotacion:anotacion) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertAnotacion(anotacion)
+    }
+
+    fun getAllAnotacion()=repository.getAllAnotacion()
+
+    fun deleteAllAnotacion()=viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteAllAnotacion()
+    }
+
+    fun sincronizarAnotacion() = viewModelScope.launch(Dispatchers.IO) {
+        deleteAllAnotacion()
+        val response = repository.anotacionAsync().await()
+        if(response!!.isSuccessful) with (response.body()){
+            this?.forEach{
+                insertAnotacion(anotacion(it._id, it.titulo,it.fecha,it.archivo,it.usuario[0]._id,it.programacion[0]._id))
+                //insertAnotacion(it)
+            }
+        }
+    }
+
+    fun setAnotacionApi(titulo:String,fecha:String,archivo:String,usuario:String,programacion:String) =
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = repository.setAnotacionApi(titulo,fecha,archivo,
+                getOneUsuario(usuario)._id,getOneProgramacion(programacion)._id)
+            if(response.execute().isSuccessful){
+                Log.d("insertar","Inserto la anotacion")
+            }
+        }
+
 
     //----------------------------------------------INFORMACION--------------------------------------------------
     fun insertInfo(info : informacion) = viewModelScope.launch(Dispatchers.IO) {
@@ -325,6 +358,8 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
     }
 
     fun getAllProgramacion(dia : String) = repository.getAllProgramacion(dia)
+
+    fun getOneProgramacion(nombre: String) = repository.getUnaProgramacion(nombre)
 
     fun sincronizarProgramacion() = viewModelScope.launch{(Dispatchers.IO)
         deleteAllProgramacion()

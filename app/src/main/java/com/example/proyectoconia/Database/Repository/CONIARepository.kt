@@ -37,6 +37,19 @@ class CONIARepository(
     fun infoAsync() : Deferred<Response<retroInformacion>>{
         return retroFitServices.getRetrofit().getInformacion()
     }
+    fun anotacionAsync() : Deferred<Response<List<modeloAnotacion>>>{
+        return retroFitServices.getRetrofit().getAnotacion()
+    }
+
+    fun setAnotacionApi(
+        titulo:String,
+        fecha:String,
+        archivo:String,
+        usuario: String,
+        programacion: String
+    ):Call<anotacion>{
+        return retroFitServices.getRetrofit().setAnotacion(titulo,fecha,archivo,usuario,programacion)
+    }
 
     fun generoAsync() : Deferred<Response<retroGenero>>{
         return retroFitServices.getRetrofit().getGenero()
@@ -117,7 +130,7 @@ class CONIARepository(
     @WorkerThread
     suspend fun insertAnotacion(anot: anotacion) = Anotacion.insertAnotacion(anot)
 
-    fun getUnaAnotacion(id: String): LiveData<List<anotacion>> = Anotacion.getOneAnotacion(id)
+    fun getUnaAnotacion(id: String): anotacion = Anotacion.getOneAnotacion(id)
     fun getContAnotacion() = Anotacion.getContAnotacion()
     fun deleteAllAnotacion() = Anotacion.deleteAllAnotacion()
     fun deleteOneAnotacion(id: String) = Anotacion.deleteOneAnotacion(id)
@@ -272,7 +285,7 @@ class CONIARepository(
     @WorkerThread
     suspend fun insertProgramacion(carr: programacion) = Programacion.insertProgramacion(carr)
 
-    fun getUnaProgramacion(id: String): LiveData<List<programacion>> = Programacion.getOneProgramacion(id)
+    fun getUnaProgramacion(id: String): programacion = Programacion.getOneProgramacion(id)
     fun getContProgramacion() = Programacion.getContProgramacion()
     fun deleteAllProgramacion() = Programacion.deleteAllProgramacion()
     fun deleteOneProgramacion(id: String) = Programacion.deleteOneProgramacion(id)

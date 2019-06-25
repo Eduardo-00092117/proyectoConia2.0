@@ -9,11 +9,12 @@ import com.example.proyectoconia.Database.Entities.programacion
 
 @Dao
 interface programacionDao {
+
     @Query("SELECT * FROM programacion_table WHERE numeroDia = :dia ORDER BY fecha ASC, hora_inicio ASC")
     fun getAllProgramacion(dia : String): LiveData<List<programacion>>
 
     @Query("SELECT * FROM programacion_table WHERE  _id= :id")
-    fun getOneProgramacion(id: String): LiveData<List<programacion>>
+    fun getOneProgramacion(id: String): programacion
 
     @Query("SELECT COUNT(*) FROM programacion_table")
     fun getContProgramacion(): Int

@@ -14,30 +14,38 @@ data class anotacion(
     var titulo : String,
     var fecha : String,
     var archivo: String,
+
+
     @ForeignKey(
         entity = usuario::class,
         parentColumns = ["_id"],
         childColumns = ["fk_usuario_anotacion"]
     )
-    @ColumnInfo(name = "fk_usuario_anotacion") var fk_usuario_anotacion: String,
+    var fk_usuario_anotacion: String,
+
     @ForeignKey(
         entity = programacion::class,
         parentColumns = ["_id"],
         childColumns = ["fk_programacion_anotacion"]
     )
-    @ColumnInfo(name = "fk_programacion_anotacion") var fk_programacion_anotacion: String
+    var fk_programacion_anotacion: String
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString()) {
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()) {
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        dest?.writeString(_id)
+        dest?.writeString(titulo)
+        dest?.writeString(fecha)
+        dest?.writeString(archivo)
+        dest?.writeString(fk_usuario_anotacion)
+        dest?.writeString(fk_programacion_anotacion)
     }
 
     override fun describeContents(): Int {

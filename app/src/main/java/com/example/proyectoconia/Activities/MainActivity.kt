@@ -11,23 +11,20 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import com.example.proyectoconia.*
 import com.example.proyectoconia.Database.Entities.asistencia
 import com.example.proyectoconia.Database.Entities.ponente
 import com.example.proyectoconia.Database.Entities.programacion
 import com.example.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.example.proyectoconia.Fragments.publico.*
-import com.example.proyectoconia.R
-import com.example.proyectoconia.constantes
 import com.example.proyectoconia.Fragments.publico.fragment_info_ponente
 import com.example.proyectoconia.Fragments.publico.fragment_info_programa
-import com.example.proyectoconia.MainAsistencia
-import com.example.proyectoconia.fragmentAsistencia
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_inicio.*
 
 class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionListener, programaFragment.OnActionListener, ponenteFragment.onClickListener,
-        fragment_info_programa.OnActionListener, fragment_info_ponente.OnActionListener, fragmentAsistencia.OnClickListener {
+        fragment_info_programa.OnActionListener, fragment_info_ponente.OnActionListener, fragmentAsistencia.OnClickListener,fragment_anotacion.OnFragmentInteractionListener {
 
     val auth = FirebaseAuth.getInstance()
     val user = auth.currentUser
@@ -144,6 +141,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
             tv_ponen -> fragment = 5
             tv_progra -> fragment = 6
             tv_contact -> fragment = 7
+            btn_anotacion->fragment = 8
             tv_iniciar -> startActivity(Intent(this, loginActivity::class.java))
         }
 
@@ -162,6 +160,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
                     }
                 }
                 7 -> supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, contactoFragment()). commit()
+                8 -> supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, anotacionFragment()).commit()
 
             }
         } else {
