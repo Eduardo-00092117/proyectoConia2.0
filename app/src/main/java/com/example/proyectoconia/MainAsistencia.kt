@@ -28,7 +28,7 @@ class MainAsistencia : AppCompatActivity(), fragmentAsistencia.OnClickListener {
 
     override fun onClickSave() {
         var viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
-        viewModel.updateoinsertAsistenciaApi(user?.email.toString(), idProgramacion.toString().replace("[", "").replace("]", ""), (4.5).toFloat())
+        viewModel.updateoinsertAsistenciaApi(user?.email.toString(), idProgramacion.toString().replace("[", "").replace("]", ""), (0).toFloat())
         Toast.makeText(this, "Se guardo su selección!", Toast.LENGTH_LONG).show()
     }
 

@@ -40,8 +40,10 @@ class adapterAsistencia(var programacion : List<programacion>, var clicklistener
             view.cb_asistencia.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked){
                     clicklistener(programacion)
+                    view.btn_calificacion.visibility = View.VISIBLE
                 } else{
                     clicklistener2(programacion)
+                    view.btn_calificacion.visibility = View.GONE
                 }
             }
 

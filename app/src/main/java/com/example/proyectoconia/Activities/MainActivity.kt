@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
 
     override fun onClickSave() {
         var viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
-        viewModel.updateoinsertAsistenciaApi(user?.email.toString(), idProgramacion.toString().replace("[", "").replace("]", ""), (4.5).toFloat())
+        viewModel.updateoinsertAsistenciaApi(user?.email.toString(), idProgramacion.toString().replace("[", "").replace("]", ""), (0).toFloat())
         Toast.makeText(this, "Se guardo su selección!", Toast.LENGTH_LONG).show()
     }
 
@@ -170,6 +170,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
                     if (user?.email == null){
                         supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, programaFragment()). commit()
                     } else{
+                        idProgramacion.clear()
                         supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, fragmentAsistencia()). commit()
                     }
                 }
