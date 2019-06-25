@@ -141,6 +141,19 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
+                    <TextView android:layout_width="wrap_content"
+                              android:id="@+id/eje_tematico"
+                              android:padding="8dp"
+                              android:textSize="16dp"
+                              android:textColor="#000"
+                              android:onClick="click"
+                              android:text="Tematicas"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
                     <TextView
                             android:id="@+id/tv_cursos"
                             android:layout_width="match_parent"
@@ -157,6 +170,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
+
                     <TextView
                             android:id="@+id/tv_ponen"
                             android:layout_width="match_parent"
@@ -168,23 +182,6 @@
                             android:textColor="#000"
                             android:onClick="click"
                             android:text="Ponencias"/>
-                </LinearLayout>
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                    <TextView
-                            android:id="@+id/tv_progra"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:drawableTop="@drawable/iconprogramasiont"
-                            android:gravity="bottom|center_horizontal"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:text="Programa"
-                            android:onClick="click"
-                            android:textColor="#000"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -200,6 +197,24 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
                     <TextView
+                            android:id="@+id/tv_progra"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:drawableTop="@drawable/iconprogramasiont"
+                            android:gravity="bottom|center_horizontal"
+                            android:padding="8dp"
+                            android:textSize="16dp"
+                            android:text="Programa"
+                            android:onClick="click"
+                            android:textColor="#000"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                    <TextView
                             android:id="@+id/tv_contact"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -210,12 +225,12 @@
                             android:textColor="#000"
                             android:onClick="click"
                             android:text="Contactanos"/>
+
                 </LinearLayout>
                 <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_weight="1">
 
                     <TextView
                             android:id="@+id/tv_iniciar"
@@ -230,36 +245,17 @@
                             android:text="Iniciar Sesión"/>
 
                     <TextView
-                        android:id="@+id/btn_anotacion"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="bottom|center_horizontal"
-                        android:padding="8dp"
-                        android:textSize="16dp"
-                        android:visibility="gone"
-                        android:drawableTop="@drawable/information"
-                        android:textColor="#000"
-                        android:onClick="click"
-                        android:text="Anotaciones"/>
-
-                </LinearLayout>
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/tv_salir"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="bottom|center_horizontal"
-                        android:drawableTop="@drawable/iconsalidapuerta"
-                        android:padding="8dp"
-                        android:textSize="16dp"
-                        android:visibility="gone"
-                        android:textColor="#000"
-                        android:onClick="click"
-                        android:text="Cerrar Sesión"/>
+                            android:id="@+id/btn_anotacion"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom|center_horizontal"
+                            android:padding="8dp"
+                            android:textSize="16dp"
+                            android:visibility="gone"
+                            android:drawableTop="@drawable/information"
+                            android:textColor="#000"
+                            android:onClick="click"
+                            android:text="Anotaciones"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -274,14 +270,18 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
-                    <TextView android:layout_width="wrap_content"
-                              android:id="@+id/eje_tematico"
-                              android:padding="8dp"
-                              android:textSize="16dp"
-                              android:textColor="#000"
-                              android:onClick="click"
-                              android:text="Tematicas"
-                              android:layout_height="wrap_content"/>
+                    <TextView
+                            android:id="@+id/tv_salir"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom|center_horizontal"
+                            android:drawableTop="@drawable/iconsalidapuerta"
+                            android:padding="8dp"
+                            android:textSize="16dp"
+                            android:visibility="gone"
+                            android:textColor="#000"
+                            android:onClick="click"
+                            android:text="Cerrar Sesión"/>
                 </LinearLayout>
                 <LinearLayout
                         android:layout_width="0dp"
