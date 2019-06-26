@@ -3,6 +3,7 @@ package com.example.proyectoconia.Activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.proyectoconia.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.actionsecond.*
@@ -30,6 +31,7 @@ class forgetPass : AppCompatActivity() {
                         task->
                     if(task.isSuccessful){
                         Log.d("forget","Email enviado")
+                        Toast.makeText(this, "Te hemos enviado uncorreo",Toast.LENGTH_SHORT).show()
                     }
                     else{
                         Log.d("forget","NEL, CORREO NO ENVIADO")

@@ -54,242 +54,260 @@
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             android:padding="8dp">
         <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="8dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+
                 <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                    <TextView
-                            android:id="@+id/tv_info"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="bottom|center_horizontal"
-                            android:drawableTop="@drawable/iconinformacionnolup"
-                            android:padding="8dp"
-                            android:textColor="#000"
-                            android:textSize="16dp"
-                            android:onClick="click"
-                            android:text="Información"/>
-                </LinearLayout>
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                    <TextView
-                            android:id="@+id/tv_fechas"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="bottom|center_horizontal"
-                            android:drawableTop="@drawable/iconcalendariot"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:onClick="click"
-                            android:textColor="#000"
-                            android:text="Fechas"/>
-                </LinearLayout>
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                    <TextView
-                            android:id="@+id/tv_patro"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="bottom|center_horizontal"
-                            android:drawableTop="@drawable/iconpatrocinio"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:onClick="click"
-                            android:textColor="#000"
-                            android:text="Patrocinadores"/>
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:orientation="horizontal">
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                    <TextView android:layout_width="match_parent"
-                              android:id="@+id/eje_tematico"
-                              android:padding="8dp"
-                              android:gravity="center"
-                              android:textSize="16dp"
-                              android:textColor="#000"
-                              android:drawableTop="@drawable/tematicat"
-                              android:onClick="click"
-                              android:text="Tematicas"
-                              android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                    <TextView
-                            android:id="@+id/tv_cursos"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="bottom|center_horizontal"
-                            android:drawableTop="@drawable/iconcursost"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:textColor="#000"
-                            android:onClick="click"
-                            android:text="Cursos"/>
-                </LinearLayout>
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                    <TextView
-                            android:id="@+id/tv_ponen"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="bottom|center_horizontal"
-                            android:drawableTop="@drawable/iconponentest"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:textColor="#000"
-                            android:onClick="click"
-                            android:text="Ponencias"/>
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:orientation="horizontal">
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                    <TextView
-                            android:id="@+id/tv_progra"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:drawableTop="@drawable/iconprogramasiont"
-                            android:gravity="bottom|center_horizontal"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:text="Programa"
-                            android:onClick="click"
-                            android:textColor="#000"/>
-                </LinearLayout>
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                    <TextView
-                            android:id="@+id/tv_contact"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="bottom|center_horizontal"
-                            android:drawableTop="@drawable/iconcontact"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:textColor="#000"
-                            android:onClick="click"
-                            android:text="Contactanos"/>
-
-                </LinearLayout>
-                <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                    <TextView
-                            android:id="@+id/tv_iniciar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="bottom|center_horizontal"
-                            android:drawableTop="@drawable/iconloginsession"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:textColor="#000"
-                            android:onClick="click"
-                            android:text="Iniciar Sesión"/>
-
-                    <TextView
-                            android:id="@+id/btn_anotacion"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="bottom|center_horizontal"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:visibility="gone"
-                            android:drawableTop="@drawable/anotacionest"
-                            android:textColor="#000"
-                            android:onClick="click"
-                            android:text="Anotaciones"/>
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:orientation="horizontal">
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                    <TextView
-                            android:id="@+id/tv_salir"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="bottom|center_horizontal"
-                            android:drawableTop="@drawable/iconsalidapuerta"
-                            android:padding="8dp"
-                            android:textSize="16dp"
-                            android:visibility="gone"
-                            android:textColor="#000"
-                            android:onClick="click"
-                            android:text="Cerrar Sesión"/>
-                </LinearLayout>
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:background="#A3A3A3">
-
-                    <TextView
                         android:layout_width="match_parent"
-                        android:id="@+id/tv_usuario"
-                        android:textSize="16dp"
-                        android:text="sdfssdf"
-                        android:gravity="center"
-                        android:textColor="#F000"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"/>
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:orientation="horizontal">
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                        <TextView
+                                android:id="@+id/tv_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="bottom|center_horizontal"
+                                android:fontFamily="sans-serif-light"
+                                android:drawableTop="@drawable/iconinformacionnolup"
+                                android:padding="8dp"
+                                android:textColor="#000"
+                                android:textSize="16dp"
+                                android:onClick="click"
+                                android:text="Información"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                        <TextView
+                                android:id="@+id/tv_fechas"
+                                android:fontFamily="sans-serif-light"
 
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="bottom|center_horizontal"
+                                android:drawableTop="@drawable/iconcalendariot"
+                                android:padding="8dp"
+                                android:textSize="16dp"
+                                android:onClick="click"
+                                android:textColor="#000"
+                                android:text="Fechas"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                        <TextView
+                                android:id="@+id/tv_patro"
+                                android:layout_width="match_parent"
+                                android:fontFamily="sans-serif-light"
+
+                                android:layout_height="match_parent"
+                                android:gravity="bottom|center_horizontal"
+                                android:drawableTop="@drawable/iconpatrocinio"
+                                android:padding="8dp"
+                                android:textSize="16dp"
+                                android:onClick="click"
+                                android:textColor="#000"
+                                android:text="Patrocinadores"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:orientation="horizontal">
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                        <TextView android:layout_width="match_parent"
+                                  android:id="@+id/eje_tematico"
+                                  android:padding="8dp"
+                                  android:gravity="center"
+                                  android:textSize="16dp"
+                                  android:fontFamily="sans-serif-light"
+
+                                  android:textColor="#000"
+                                  android:drawableTop="@drawable/tematicat"
+                                  android:onClick="click"
+                                  android:text="Tematicas"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                        <TextView
+                                android:id="@+id/tv_cursos"
+                                android:layout_width="match_parent"
+                                android:fontFamily="sans-serif-light"
+                                android:layout_height="match_parent"
+                                android:gravity="bottom|center_horizontal"
+                                android:drawableTop="@drawable/iconcursost"
+                                android:padding="8dp"
+                                android:textSize="16dp"
+                                android:textColor="#000"
+                                android:onClick="click"
+                                android:text="Cursos"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                        <TextView
+                                android:id="@+id/tv_ponen"
+                                android:layout_width="match_parent"
+                                android:fontFamily="sans-serif-light"
+                                android:layout_height="match_parent"
+                                android:gravity="bottom|center_horizontal"
+                                android:drawableTop="@drawable/iconponentest"
+                                android:padding="8dp"
+                                android:textSize="16dp"
+                                android:textColor="#000"
+                                android:onClick="click"
+                                android:text="Ponencias"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:orientation="horizontal">
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                        <TextView
+                                android:id="@+id/tv_progra"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="sans-serif-light"
+                                android:drawableTop="@drawable/iconprogramasiont"
+                                android:gravity="bottom|center_horizontal"
+                                android:padding="8dp"
+                                android:textSize="16dp"
+                                android:text="Programa"
+                                android:onClick="click"
+                                android:textColor="#000"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/tv_contact"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="bottom|center_horizontal"
+                                android:fontFamily="sans-serif-light"
+
+                                android:drawableTop="@drawable/iconcontact"
+                                android:padding="8dp"
+                                android:textSize="16dp"
+                                android:textColor="#000"
+                                android:onClick="click"
+                                android:text="Contactanos"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                        <TextView
+                                android:id="@+id/tv_iniciar"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="sans-serif-light"
+
+                                android:gravity="bottom|center_horizontal"
+                                android:drawableTop="@drawable/iconloginsession"
+                                android:padding="8dp"
+                                android:textSize="16dp"
+                                android:textColor="#000"
+                                android:onClick="click"
+                                android:text="Iniciar Sesión"/>
+
+                        <TextView
+                                android:id="@+id/btn_anotacion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="sans-serif-light"
+                                android:gravity="bottom|center_horizontal"
+                                android:padding="8dp"
+                                android:textSize="16dp"
+                                android:visibility="gone"
+                                android:drawableTop="@drawable/anotacionest"
+                                android:textColor="#000"
+                                android:onClick="click"
+                                android:text="Anotaciones"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:orientation="horizontal">
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                        <TextView
+                                android:id="@+id/tv_salir"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="sans-serif-light"
+                                android:gravity="bottom|center_horizontal"
+                                android:drawableTop="@drawable/iconsalidapuerta"
+                                android:padding="8dp"
+                                android:textSize="16dp"
+                                android:visibility="gone"
+                                android:textColor="#000"
+                                android:onClick="click"
+                                android:text="Cerrar Sesión"/>
+                    </LinearLayout>
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="#A3A3A3">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:id="@+id/tv_usuario"
+                                android:textSize="16dp"
+                                android:text="sdfssdf"
+                                android:gravity="center"
+                                android:textColor="#F000"
+                                android:fontFamily="sans-serif-light"
+
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"/>
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 

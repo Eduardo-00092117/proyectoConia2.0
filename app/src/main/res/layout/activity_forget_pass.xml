@@ -7,24 +7,75 @@
         android:orientation="vertical"
         android:layout_height="match_parent"
         tools:context=".Activities.forgetPass">
-
     <include layout="@layout/actionsecond"/>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/oscuro"
+                    android:drawableTop="@drawable/icon"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:padding="32dp"
-        android:orientation="vertical">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/oscuro"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:textSize="16dp"
+                    android:text="Recupera tu contrasenia"/>
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    app:cardCornerRadius="16dp"
+                    android:layout_margin="1dp"
+                    android:layout_height="300dp"
+                    app:cardBackgroundColor="@color/oscuro">
+                <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        app:cardCornerRadius="16dp"
+                        android:layout_margin="8dp"
+                        android:layout_height="match_parent">
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:weightSum="1"
+                                  android:layout_height="wrap_content">
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="32dp"
+                                android:orientation="vertical">
+                            <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:drawableTop="@drawable/passwordbig"/>
 
-        <EditText android:layout_width="match_parent"
-            android:hint="email"
-            android:id="@+id/et_forget_pass"
-            android:layout_height="wrap_content"/>
-        <Button android:layout_width="wrap_content"
-            android:id="@+id/btn_forget_accept"
-            android:text="Restablecer"
-            android:layout_height="wrap_content"/>
+                            <EditText android:layout_width="match_parent"
+                                      android:hint="email"
+                                      android:id="@+id/et_forget_pass"
+                                      android:layout_height="wrap_content"/>
+                            <Button android:layout_width="wrap_content"
+                                    android:id="@+id/btn_forget_accept"
+                                    android:layout_margin="20dp"
+                                    android:text="Restablecer"
+                                    android:fontFamily="sans-serif-black"
+                                    android:layout_height="wrap_content"
+                                    android:background="#18bc9c"/>
 
-    </LinearLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>
