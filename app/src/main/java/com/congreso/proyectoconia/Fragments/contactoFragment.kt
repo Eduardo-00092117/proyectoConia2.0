@@ -1,4 +1,4 @@
-package com.congreso.proyectoconia.Fragments.publico
+package com.congreso.proyectoconia.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,28 +8,29 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.congreso.proyectoconia.Adapters.adapterCursos
+import com.congreso.proyectoconia.Adapters.adapterContacto
 import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.congreso.proyectoconia.R
-import kotlinx.android.synthetic.main.fragment_curso.view.*
+import kotlinx.android.synthetic.main.fragment_contacto.view.*
 
-class cursoFragment : Fragment() {
+class contactoFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        var view = inflater.inflate(R.layout.fragment_curso, container, false)
+        var view = inflater.inflate(R.layout.fragment_contacto, container, false)
 
         var viewModel = ViewModelProviders.of(activity!!).get(CONIAViewModel::class.java)
 
-        var adapter = adapterCursos(emptyList())
+        var adapter = adapterContacto(emptyList())
 
-        view.rv_cursos.adapter = adapter
-        view.rv_cursos.layoutManager = LinearLayoutManager(context)
+        view.rv_contacto.adapter = adapter
+        view.rv_contacto.layoutManager = LinearLayoutManager(context)
 
-        viewModel.getAllCurso().observe(this, Observer { curso ->
-            curso?.let { adapter.setCurso(it) }
+        viewModel.getAllContacto().observe(this, Observer { contacto ->
+            contacto?.let { adapter.setContacto(it) }
         })
 
         return view

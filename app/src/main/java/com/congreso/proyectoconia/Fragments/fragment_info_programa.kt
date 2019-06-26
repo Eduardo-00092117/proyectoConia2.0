@@ -1,4 +1,4 @@
-package com.congreso.proyectoconia.Fragments.publico
+package com.congreso.proyectoconia.Fragments
 
 import android.content.Context
 import android.os.Bundle

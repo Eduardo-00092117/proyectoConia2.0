@@ -3,7 +3,7 @@ package com.congreso.proyectoconia.Activities
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.congreso.proyectoconia.Fragments.publico.fragmentRegistro
+import com.congreso.proyectoconia.Fragments.fragmentRegistro
 import com.congreso.proyectoconia.R
 import kotlinx.android.synthetic.main.actionsecond.*
 

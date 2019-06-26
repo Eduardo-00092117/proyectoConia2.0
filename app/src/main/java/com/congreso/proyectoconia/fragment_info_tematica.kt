@@ -50,8 +50,6 @@ class fragment_info_tematica : Fragment() {
 
         view.tv_nombre_tematica.text = tematica?.titulo
 
-        Log.d("tematicax","Esta es: ${tematica?.titulo}")
-
         Picasso.get().load(tematica?.imagen)
             .placeholder(R.drawable.load)
             .into(view.iv_foto_tematica)

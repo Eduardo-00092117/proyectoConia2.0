@@ -4,10 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.congreso.proyectoconia.Database.Entities.anotacion
 import com.congreso.proyectoconia.Database.Entities.tematica
-import com.congreso.proyectoconia.Fragments.publico.ponenteFragment
 import com.congreso.proyectoconia.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recyclertematica.view.*

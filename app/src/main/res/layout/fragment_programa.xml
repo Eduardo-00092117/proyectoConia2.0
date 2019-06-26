@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#fff"
     android:orientation="vertical"
-    tools:context=".Fragments.publico.programaFragment">
+    tools:context=".Fragments.programaFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"

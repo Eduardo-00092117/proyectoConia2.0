@@ -1,7 +1,6 @@
 package com.congreso.proyectoconia.Activities
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +12,7 @@ import com.congreso.proyectoconia.Database.Entities.ponente
 import com.congreso.proyectoconia.Database.Entities.programacion
 import com.congreso.proyectoconia.Database.Entities.tematica
 import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
-import com.congreso.proyectoconia.Fragments.publico.*
-import com.congreso.proyectoconia.Fragments.publico.anotacionFragment
+import com.congreso.proyectoconia.Fragments.*
 import kotlinx.android.synthetic.main.actionsecond.*
 import kotlinx.android.synthetic.main.activity_second_main.*
 
@@ -100,7 +98,7 @@ class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, program
             }
             8 -> {
                 supportFragmentManager.beginTransaction().replace(R.id.principal,
-                    anotacionFragment()
+                        anotacionFragment()
                 ).commit()
                 nombre = "Anotacion"
             }

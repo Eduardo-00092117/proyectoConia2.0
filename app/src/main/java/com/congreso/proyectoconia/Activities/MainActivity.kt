@@ -19,9 +19,7 @@ import com.congreso.proyectoconia.Database.Entities.ponente
 import com.congreso.proyectoconia.Database.Entities.programacion
 import com.congreso.proyectoconia.Database.Entities.tematica
 import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
-import com.congreso.proyectoconia.Fragments.publico.*
-import com.congreso.proyectoconia.Fragments.publico.fragment_info_ponente
-import com.congreso.proyectoconia.Fragments.publico.fragment_info_programa
+import com.congreso.proyectoconia.Fragments.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.calificacion_layout.*
@@ -187,6 +185,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
             btn_anotacion->fragment = 8
             eje_tematico -> fragment = 9
             tv_iniciar -> startActivity(Intent(this, loginActivity::class.java))
+            tv_info_app -> startActivity(Intent(this, infoAplication::class.java))
         }
 
         if (mostrarinformacion != null) {
@@ -215,7 +214,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
                 }
                 7 -> supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, contactoFragment()). commit()
                 8 -> supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,
-                    anotacionFragment()
+                        anotacionFragment()
                 ).commit()
                 9-> supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,tematicaFragment()).commit()
             }

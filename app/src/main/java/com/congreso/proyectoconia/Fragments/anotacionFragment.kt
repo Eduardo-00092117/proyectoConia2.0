@@ -1,23 +1,24 @@
-package com.congreso.proyectoconia.Fragments.publico
+package com.congreso.proyectoconia.Fragments
 
 import android.content.Context
-import android.net.Uri
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.congreso.proyectoconia.Adapters.adapterPrograma
-import com.congreso.proyectoconia.Database.Entities.programacion
+import com.congreso.proyectoconia.Activities.ActivityAnotacion
+import com.congreso.proyectoconia.Adapters.adapterAnotacion
+import com.congreso.proyectoconia.Database.Entities.anotacion
 import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.congreso.proyectoconia.R
-import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_programa.*
-import kotlinx.android.synthetic.main.fragment_programa.view.*
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.content_main2.view.*
+import kotlinx.android.synthetic.main.fragment_anotacion.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,17 +29,20 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [programaFragment.OnFragmentInteractionListener] interface
+ * [anotacionFragment.OnClickListener] interface
  * to handle interaction events.
- * Use the [programaFragment.newInstance] factory method to
+ * Use the [anotacionFragment.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class programaFragment : Fragment() {
+class anotacionFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnActionListener? = null
+    private var listener: OnClickListener? = null
+
+    val auth = FirebaseAuth.getInstance()
+    val user = auth.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,81 +52,49 @@ class programaFragment : Fragment() {
         }
     }
 
-
-
-    interface OnActionListener {
-        fun onClickListener(programa : programacion)
+    interface OnClickListener {
+        // TODO: Update argument type and name
+        fun onClickListener(anotacion: anotacion)
+        fun onClickListenerDelete(anotacion: anotacion)
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        var view = inflater.inflate(R.layout.fragment_programa, container, false)
-
-        view.tabs.addTab(view.tabs.newTab().setText("Dia 1"))
-        view.tabs.addTab(view.tabs.newTab().setText("Dia 2"))
+        // Inflate the layout for this fragment
+        var view =  inflater.inflate(R.layout.fragment_anotacion, container, false)
 
         var viewModel = ViewModelProviders.of(activity!!).get(CONIAViewModel::class.java)
 
-        var adapter = adapterPrograma(emptyList(), {programa -> listener?.onClickListener(programa)})
+        var adapter = adapterAnotacion(emptyList(),{anotacion->(listener?.onClickListener(anotacion))}, {anotacion->(listener?.onClickListenerDelete(anotacion))})
 
-        view.rv_programacion.adapter = adapter
-        view.rv_programacion.layoutManager = LinearLayoutManager(context)
+        view.fab_agregar.setOnClickListener {
+            startActivity(Intent(this.context, ActivityAnotacion::class.java))
+        }
 
-        viewModel.getAllProgramacion("1").observe(this, Observer { ponente ->
-            ponente?.let {adapter.setProgramacion(it)}
-        })
+        if(user?.email!=null){
+            Log.d("quepedo","EN EL IFFFF")
+
+            view.rv_anotacion.adapter = adapter
+            view.rv_anotacion.layoutManager = LinearLayoutManager(context)
+
+            viewModel.getAllAnotacion(user?.email.toString()).observe(this, Observer {
+                anotacion->anotacion?.let { adapter.setAnotacion(it) }
+            })
 
 
-        //Segundo recyclerView
-        var adapter2 = adapterPrograma(emptyList(), {programa -> listener?.onClickListener(programa)})
-
-        view.rv_programacion2.adapter = adapter2
-        view.rv_programacion2.layoutManager = LinearLayoutManager(context)
-
-        viewModel.getAllProgramacion("2").observe(this, Observer { ponente ->
-            ponente?.let {adapter2.setProgramacion(it)}
-        })
-
-        view.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                when(tab.position){
-                    0 -> {
-                        rv_programacion.visibility = View.VISIBLE
-                        rv_programacion2.visibility = View.GONE
-                    }
-                    1 -> {
-                        rv_programacion.visibility = View.GONE
-                        rv_programacion2.visibility = View.VISIBLE
-                    }
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
-            }
-
-        })
+        } else{
+            Log.d("holi","Nothing to show")
+        }
 
         return view
     }
 
 
-
-
-
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnActionListener) {
+        if (context is OnClickListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
@@ -153,12 +125,12 @@ class programaFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment programaFragment.
+         * @return A new instance of fragment anotacionFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            programaFragment().apply {
+            anotacionFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

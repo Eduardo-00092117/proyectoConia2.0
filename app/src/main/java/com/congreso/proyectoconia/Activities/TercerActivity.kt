@@ -6,8 +6,8 @@ import com.congreso.proyectoconia.Database.Entities.ponente
 import com.congreso.proyectoconia.Database.Entities.programacion
 import com.congreso.proyectoconia.R
 import com.congreso.proyectoconia.constantes
-import com.congreso.proyectoconia.Fragments.publico.fragment_info_ponente
-import com.congreso.proyectoconia.Fragments.publico.fragment_info_programa
+import com.congreso.proyectoconia.Fragments.fragment_info_ponente
+import com.congreso.proyectoconia.Fragments.fragment_info_programa
 import kotlinx.android.synthetic.main.actionsecond.*
 
 class TercerActivity : AppCompatActivity(), fragment_info_programa.OnActionListener, fragment_info_ponente.OnActionListener {

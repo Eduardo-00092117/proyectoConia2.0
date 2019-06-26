@@ -1,9 +1,8 @@
-package com.congreso.proyectoconia.Fragments.publico
+package com.congreso.proyectoconia.Fragments
 
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -55,7 +54,7 @@ class fragment_anotacion : Fragment() {
     }
 
     companion object {
-        fun newInstance(anotacion: anotacion) : fragment_anotacion{
+        fun newInstance(anotacion: anotacion) : fragment_anotacion {
             var intent = fragment_anotacion()
             intent.anotacion = anotacion
             return intent

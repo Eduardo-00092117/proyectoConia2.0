@@ -1,4 +1,4 @@
-package com.congreso.proyectoconia.Fragments.publico
+package com.congreso.proyectoconia.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -3,10 +3,9 @@ package com.congreso.proyectoconia.Activities
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.congreso.proyectoconia.Database.Entities.anotacion
 import com.congreso.proyectoconia.R
-import com.congreso.proyectoconia.Fragments.publico.fragment_anotacion
+import com.congreso.proyectoconia.Fragments.fragment_anotacion
 import com.congreso.proyectoconia.constantes
 import kotlinx.android.synthetic.main.actionsecond.*
 

@@ -1,4 +1,4 @@
-package com.congreso.proyectoconia.Fragments.publico
+package com.congreso.proyectoconia.Fragments
 
 import android.content.Context
 import android.net.Uri
@@ -8,8 +8,6 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethod
-import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -18,7 +16,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.congreso.proyectoconia.R
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.fragment_fragment_registro.*
 import kotlinx.android.synthetic.main.fragment_fragment_registro.view.*
 import android.widget.AdapterView as AdapterView1
