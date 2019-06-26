@@ -56,6 +56,8 @@ class fragmentAsistencia : Fragment() {
         fun onClickDeleteListener(programa : programacion)
         fun onClickSave()
         fun onClickInfo(programa: programacion)
+        fun onClickCalificacion(programa: programacion)
+        fun onClickComentarios(programa: programacion)
     }
 
 
@@ -75,13 +77,13 @@ class fragmentAsistencia : Fragment() {
 
         var viewModel = ViewModelProviders.of(activity!!).get(CONIAViewModel::class.java)
 
-        var adapter = adapterAsistencia(emptyList(), {programa -> listener?.onClickAddListener(programa)}, {programa -> listener?.onClickDeleteListener(programa)}, {programa -> listener?.onClickInfo(programa)}, emptyList())
+        var adapter = adapterAsistencia(emptyList(), {programa -> listener?.onClickAddListener(programa)}, {programa -> listener?.onClickDeleteListener(programa)}, {programa -> listener?.onClickInfo(programa)}, emptyList(),{programa -> listener?.onClickCalificacion(programa)}, {programa -> listener?.onClickComentarios(programa)})
 
         view.rv_programacion.adapter = adapter
         view.rv_programacion.layoutManager = LinearLayoutManager(context)
 
         //Segundo recyclerView
-        var adapter2 = adapterAsistencia(emptyList(), {programa -> listener?.onClickAddListener(programa)}, {programa -> listener?.onClickDeleteListener(programa)}, {programa -> listener?.onClickInfo(programa)}, emptyList())
+        var adapter2 = adapterAsistencia(emptyList(), {programa -> listener?.onClickAddListener(programa)}, {programa -> listener?.onClickDeleteListener(programa)}, {programa -> listener?.onClickInfo(programa)}, emptyList(), {programa -> listener?.onClickCalificacion(programa)}, {programa -> listener?.onClickComentarios(programa)})
 
         view.rv_programacion2.adapter = adapter2
         view.rv_programacion2.layoutManager = LinearLayoutManager(context)

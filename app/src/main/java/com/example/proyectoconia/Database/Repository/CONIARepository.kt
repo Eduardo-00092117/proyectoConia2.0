@@ -159,12 +159,19 @@ class CONIARepository(
     @WorkerThread
     suspend fun insertAsistencia(asis: asistencia) = Asistenia.insertAsistencia(asis)
 
-    fun getUnaAsistencia(id: String): asistencia = Asistenia.getOneAsistencia(id)
+    fun getUnaAsistencia(id: String): List<asistencia> = Asistenia.getOneAsistencia(id)
     fun getContAsistencia(id : String) = Asistenia.getContAsistencia(id)
     fun deleteAllAsistencia() = Asistenia.deleteAllAsistencia()
     fun deleteOneAsistencia(id: String) = Asistenia.deleteOneAsistencia(id)
 
     fun getProgramaAsistencia(id : String): LiveData<List<programacion>> = Asistenia.getProgramaAsistencia(id)
+
+
+    fun getOneAsistenciaUsuario(id : String) : LiveData<List<asistencia>> = Asistenia.getOneAsistenciaUsuario(id)
+
+    fun getOneAsistenciaUsuario2(id : String) : List<asistencia> = Asistenia.getOneAsistenciaUsuario2(id)
+
+    fun getOneAsistenciaUsuarioPonencia(correo: String, id_programa : String): asistencia = Asistenia.getOneAsistenciaUsuarioPonencia(correo, id_programa)
 
     //  3-------------------------------------CARRERA---------------------------------
     fun getAllCarrera(): LiveData<List<carrera>> = Carrera.getAllCarrera()

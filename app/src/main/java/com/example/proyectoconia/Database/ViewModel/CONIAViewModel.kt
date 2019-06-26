@@ -10,6 +10,7 @@ import com.example.proyectoconia.Database.Repository.CONIARepository
 import com.example.proyectoconia.Database.RoomDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
     private var repository : CONIARepository
@@ -455,7 +456,7 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
         if (response!!.isSuccessful) with(response.body()){
             this?.forEach {
                 it.programacion?.forEach { programacion ->
-                    insertAsistencia(asistencia(0, it._id, it.calificacion, it.usuario[0]._id, programacion._id))
+                    insertAsistencia(asistencia(it._id, it.calificacion, it.usuario[0]._id, programacion._id))
                 }
             }
         }
@@ -463,33 +464,57 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
 
     fun getOneAsistencia(id : String) = repository.getUnaAsistencia(id)
 
-    fun deleteAsistenciaApi(usuario : String) = viewModelScope.launch(Dispatchers.IO) {
+    /*fun deleteAsistenciaApi(usuario : String) = viewModelScope.launch(Dispatchers.IO) {
         var id_usuario = getOneUsuario(usuario)._id
         val response = repository.deleteAsistenciaApi(getOneAsistencia(id_usuario)._id)
         if (response.execute().isSuccessful){
             Log.d("Hola", "SOY LA OSTIA POR QUE YA LO ELIMINA")
         }
-    }
+    }*/
+
+    fun getOneAsistenciaUsuario(id : String) : LiveData<List<asistencia>> = repository.getOneAsistenciaUsuario(id)
+
+    fun getOneAsistenciaUsuario2(id : String) : List<asistencia> = repository.getOneAsistenciaUsuario2(id)
 
     fun getContAsistencia(id : String) = repository.getContAsistencia(id)
 
-    fun updateoinsertAsistenciaApi(usuario : String, programa: String, calificacion: Float) = viewModelScope.launch(Dispatchers.IO) {
+    fun getUsuarioPonencia(correo : String, id_programacion : String) = repository.getOneAsistenciaUsuarioPonencia(correo, id_programacion)
+
+    fun updateAsistenciaCalifiacion(usuario: String, programacion: String, calificacion: Float) = viewModelScope.launch (Dispatchers.IO){
+        var response = repository.updateAsistenciaApi(getUsuarioPonencia(usuario, programacion)._id, getOneUsuario(usuario)._id, programacion, calificacion)
+        if (response.execute().isSuccessful){
+            Log.d("Hola", "Si funciona!!")
+        }
+        sincronizarAsistencia()
+    }
+
+    fun updateoinsertAsistenciaApi(usuario : String, programa: ArrayList<String>, calificacion: Float) = viewModelScope.launch(Dispatchers.IO) {
         var id_usuario = getOneUsuario(usuario)._id
-        if (programa == "" && getContAsistencia(id_usuario) != 0){
-            val response = repository.deleteAsistenciaApi(getOneAsistencia(id_usuario)._id)
+
+        getOneAsistencia(id_usuario).forEach {
+            val response = repository.deleteAsistenciaApi(it._id)
             if (response.execute().isSuccessful){
                 Log.d("Hola", "SOY LA OSTIA POR QUE YA LO ELIMINA")
             }
-        } else{
-            if (getContAsistencia(id_usuario) == 0){
-                val response = repository.setAsistenciaApi(id_usuario, programa, calificacion)
+        }
+
+        programa.forEach {
+            var bandera = 0
+            try {
+                getUsuarioPonencia(usuario, it).calificacion
+            } catch (exception : Exception){
+                bandera = 1
+            }
+
+            if (bandera == 1){
+                val response = repository.setAsistenciaApi(id_usuario, it, calificacion)
                 if (response.execute().isSuccessful){
                     Log.d("Hola", "SOY LA OSTIA POR QUE YA LO INGRESA")
                 }
             } else{
-                val response = repository.updateAsistenciaApi(getOneAsistencia(id_usuario)._id, id_usuario, programa, calificacion)
+                val response = repository.setAsistenciaApi(id_usuario, it, getUsuarioPonencia(usuario, it).calificacion)
                 if (response.execute().isSuccessful){
-                    Log.d("Hola", "SOY LA OSTIA POR QUE YA LO MODIFICA")
+                    Log.d("Hola", "SOY LA OSTIA POR QUE YA LO INGRESA")
                 }
             }
         }

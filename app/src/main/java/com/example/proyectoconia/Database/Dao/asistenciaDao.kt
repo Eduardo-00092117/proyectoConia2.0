@@ -16,7 +16,16 @@ interface asistenciaDao {
     fun getAllAnsistencia(): LiveData<List<asistencia>>
 
     @Query("SELECT * FROM asistencia_table asis WHERE asis.fk_asistencia_usuario = :id")
-    fun getOneAsistencia(id: String): asistencia
+    fun getOneAsistencia(id: String): List<asistencia>
+
+    @Query("SELECT asis._id, asis.calificacion ,asis.fk_asistencia_usuario, asis.fk_programacion_asistencia FROM asistencia_table asis, usuario_table usu WHERE asis.fk_asistencia_usuario = usu._id and usu.correo = :id")
+    fun getOneAsistenciaUsuario(id: String): LiveData<List<asistencia>>
+
+    @Query("SELECT asis._id, asis.calificacion ,asis.fk_asistencia_usuario, asis.fk_programacion_asistencia FROM asistencia_table asis, usuario_table usu WHERE asis.fk_asistencia_usuario = usu._id and usu.correo = :id")
+    fun getOneAsistenciaUsuario2(id: String): List<asistencia>
+
+    @Query("SELECT asis._id, asis.calificacion ,asis.fk_asistencia_usuario, asis.fk_programacion_asistencia FROM asistencia_table asis, usuario_table usu, programacion_table progra WHERE asis.fk_asistencia_usuario = usu._id and asis.fk_programacion_asistencia = progra._id and usu.correo = :correo and progra._id = :id_programa")
+    fun getOneAsistenciaUsuarioPonencia(correo: String, id_programa : String): asistencia
 
     @Query("SELECT COUNT(*) FROM asistencia_table WHERE fk_asistencia_usuario = :id")
     fun getContAsistencia(id : String): Int

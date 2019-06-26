@@ -40,8 +40,6 @@ class fragment_info_ponente : Fragment() {
 
         view.tv_nombre.text = ponente?.nombre
 
-        Log.d("ponentex","Esta es: ${ponente?.nombre}")
-
         Picasso.get().load(ponente?.foto)
                 .placeholder(R.drawable.load)
                 .into(view.iv_foto_ponente)

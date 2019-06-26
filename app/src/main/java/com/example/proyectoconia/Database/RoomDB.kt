@@ -26,7 +26,7 @@ import com.example.proyectoconia.Database.Entities.*
                 tematica::class,
                 galeria::class,
                 fechaImportante::class,
-                informacion::class],version = 10, exportSchema = false)
+                informacion::class],version = 11, exportSchema = false)
 abstract class RoomDB : RoomDatabase(){
     abstract fun anotacionDao() : anotacionDao
     abstract fun asistenciaDao() : asistenciaDao

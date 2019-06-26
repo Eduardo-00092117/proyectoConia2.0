@@ -66,15 +66,10 @@ class inicioFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
 
-        /*viewModel.getProgramaAsistencia(user?.email.toString()).observe(this, Observer { genero ->
-            genero?.let {
-                Log.d("Hola", it.toString())
-            }
-        })*/
+        view.tv_usuario.text = "Usuario: " + user?.email
 
         viewModel.getAllGaleria().observe(this, Observer { genero ->
             genero?.let {
-                tv_usuario.text = user?.email
                 if (it.size > 0) {
                     Picasso.get()
                         .load(it[0].imagen)

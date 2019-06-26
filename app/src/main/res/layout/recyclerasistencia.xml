@@ -70,14 +70,29 @@
             android:layout_height="wrap_content"
             android:text="Asistire" />
 
-        <Button
-            android:id="@+id/btn_calificacion"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_botones"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_below="@id/cb_asistencia"
-            android:layout_centerInParent="true"
-            android:text="Calificar"/>
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_calificacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calificar"/>
+
+            <Button
+                android:id="@+id/btn_comentar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="comentar"/>
+
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>
