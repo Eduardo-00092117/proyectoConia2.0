@@ -322,7 +322,7 @@
 
                         android:gravity="center"
                         android:onClick="click"
-                        android:drawableTop="@drawable/iconinformationlup"
+                        android:drawableTop="@drawable/iconaboutapp"
                         android:textColor="#000"
                         android:text="Información de la aplicación"/>
                 </LinearLayout>
