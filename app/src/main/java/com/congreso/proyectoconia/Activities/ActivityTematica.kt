@@ -1,11 +1,14 @@
-package com.congreso.proyectoconia
+package com.congreso.proyectoconia.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.congreso.proyectoconia.Database.Entities.tematica
+import com.congreso.proyectoconia.R
+import com.congreso.proyectoconia.Constantes.constantes
+import com.congreso.proyectoconia.Fragments.fragment_info_tematica
 import kotlinx.android.synthetic.main.actionsecond.*
 
-class ActivityTematica : AppCompatActivity(),fragment_info_tematica.OnFragmentInteractionListener {
+class ActivityTematica : AppCompatActivity(), fragment_info_tematica.OnFragmentInteractionListener {
     override fun onFragmentInteraction_info_tematica() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

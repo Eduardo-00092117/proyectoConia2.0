@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.congreso.proyectoconia.Database.Entities.anotacion
 import com.congreso.proyectoconia.R
 import com.congreso.proyectoconia.Fragments.fragment_anotacion
-import com.congreso.proyectoconia.constantes
+import com.congreso.proyectoconia.Constantes.constantes
 import kotlinx.android.synthetic.main.actionsecond.*
 
 class ActivityAnotacion : AppCompatActivity(),

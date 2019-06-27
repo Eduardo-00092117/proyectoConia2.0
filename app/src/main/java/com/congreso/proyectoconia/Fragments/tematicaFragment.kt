@@ -1,7 +1,6 @@
-package com.congreso.proyectoconia
+package com.congreso.proyectoconia.Fragments
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.congreso.proyectoconia.Adapters.adapterTematica
 import com.congreso.proyectoconia.Database.Entities.tematica
 import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
+import com.congreso.proyectoconia.R
 import kotlinx.android.synthetic.main.fragment_tematica.view.*
 
 

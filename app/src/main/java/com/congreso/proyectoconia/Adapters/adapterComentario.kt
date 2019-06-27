@@ -1,19 +1,14 @@
 package com.congreso.proyectoconia.Adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.congreso.proyectoconia.Database.Entities.comentario
 import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.congreso.proyectoconia.R
-import com.congreso.proyectoconia.comentariosFragment
-import kotlinx.android.synthetic.main.fragment_comentarios.view.*
 import kotlinx.android.synthetic.main.recyclercomentarios.view.*
 
 class adapterComentario(var comentario : List<comentario>, var viewModel : CONIAViewModel, var context : LifecycleOwner) : RecyclerView.Adapter<adapterComentario.ViewHolder>() {

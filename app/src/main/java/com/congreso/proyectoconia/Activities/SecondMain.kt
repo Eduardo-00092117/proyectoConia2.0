@@ -3,12 +3,12 @@ package com.congreso.proyectoconia.Activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.congreso.proyectoconia.*
+import com.congreso.proyectoconia.Constantes.constantes
 import com.congreso.proyectoconia.Database.Entities.anotacion
 import com.congreso.proyectoconia.Database.Entities.ponente
 import com.congreso.proyectoconia.Database.Entities.programacion
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.actionsecond.*
 import kotlinx.android.synthetic.main.activity_second_main.*
 
 
-class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, programaFragment.OnActionListener, SwipeRefreshLayout.OnRefreshListener, anotacionFragment.OnClickListener,tematicaFragment.OnFragmentInteractionListener,
+class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, programaFragment.OnActionListener, SwipeRefreshLayout.OnRefreshListener, anotacionFragment.OnClickListener, tematicaFragment.OnFragmentInteractionListener,
                                         comentariosFragment.OnActionListener{
     override fun onClickListener3() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -106,7 +106,7 @@ class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, program
                 nombre = "Anotacion"
             }
             9 ->{
-                supportFragmentManager.beginTransaction().replace(R.id.principal,tematicaFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.principal, tematicaFragment()).commit()
                 nombre = "Tematica"
             }
             10 -> {

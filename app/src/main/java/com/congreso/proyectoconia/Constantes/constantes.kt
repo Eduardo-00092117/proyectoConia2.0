@@ -1,4 +1,4 @@
-package com.congreso.proyectoconia
+package com.congreso.proyectoconia.Constantes
 
 object constantes {
     val VENTANA_SECUNDARIA_SIN_USUARIO = "fragment"

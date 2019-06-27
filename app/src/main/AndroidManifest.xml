@@ -14,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".infoAplication"></activity>
-        <activity android:name=".ActivityTematica"></activity>
+        <activity android:name=".Activities.infoAplication"></activity>
+        <activity android:name=".Activities.ActivityTematica"></activity>
         <activity android:name=".Activities.ActivityAnotacion" />
-        <activity android:name=".MainAsistencia" />
+        <activity android:name=".Activities.MainAsistencia" />
         <activity android:name=".Activities.TercerActivity" />
         <activity android:name=".Activities.forgetPass" />
         <activity android:name=".Activities.ActivityRegistro" />

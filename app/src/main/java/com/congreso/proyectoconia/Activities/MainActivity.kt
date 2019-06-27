@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.congreso.proyectoconia.*
+import com.congreso.proyectoconia.Constantes.constantes
 import com.congreso.proyectoconia.Database.Entities.anotacion
 import com.congreso.proyectoconia.Database.Entities.ponente
 import com.congreso.proyectoconia.Database.Entities.programacion
@@ -27,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_inicio.*
 
 class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionListener, programaFragment.OnActionListener, ponenteFragment.onClickListener,
         fragment_info_programa.OnActionListener, fragment_info_ponente.OnActionListener, fragmentAsistencia.OnClickListener,
-    fragment_anotacion.OnFragmentInteractionListener, anotacionFragment.OnClickListener,tematicaFragment.OnFragmentInteractionListener,fragment_info_tematica.OnFragmentInteractionListener,
+    fragment_anotacion.OnFragmentInteractionListener, anotacionFragment.OnClickListener, tematicaFragment.OnFragmentInteractionListener, fragment_info_tematica.OnFragmentInteractionListener,
     comentariosFragment.OnActionListener{
     override fun onClickListener3() {
         supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, fragmentAsistencia()). commit()
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
     }
 
     override fun onFragmentInteraction_info_tematica() {
-        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,tematicaFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, tematicaFragment()).commit()
     }
 
     override fun onFragment_tematica_Interaction(tematica: tematica) {
@@ -218,7 +219,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
                 8 -> supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,
                         anotacionFragment()
                 ).commit()
-                9-> supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion,tematicaFragment()).commit()
+                9-> supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, tematicaFragment()).commit()
             }
         } else {
             if (fragment != 0) {

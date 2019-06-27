@@ -1,9 +1,7 @@
-package com.congreso.proyectoconia
+package com.congreso.proyectoconia.Fragments
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.congreso.proyectoconia.Adapters.adapterAsistencia
-import com.congreso.proyectoconia.Adapters.adapterPrograma
 import com.congreso.proyectoconia.Database.Entities.programacion
 import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
+import com.congreso.proyectoconia.R
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_fragment_asistencia.*

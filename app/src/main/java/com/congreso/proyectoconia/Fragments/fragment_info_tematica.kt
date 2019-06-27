@@ -1,15 +1,13 @@
-package com.congreso.proyectoconia
+package com.congreso.proyectoconia.Fragments
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.congreso.proyectoconia.Database.Entities.tematica
+import com.congreso.proyectoconia.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_fragment_info_tematica.view.*
@@ -34,7 +32,7 @@ class fragment_info_tematica : Fragment() {
     }
 
     companion object {
-        fun newInstance(tematica: tematica):fragment_info_tematica{
+        fun newInstance(tematica: tematica): fragment_info_tematica {
             var instancia = fragment_info_tematica()
             instancia.tematica=tematica
             return instancia

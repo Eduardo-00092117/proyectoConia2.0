@@ -1,26 +1,22 @@
-package com.congreso.proyectoconia
+package com.congreso.proyectoconia.Activities
 
 import android.app.Dialog
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.congreso.proyectoconia.Activities.SecondMain
-import com.congreso.proyectoconia.Activities.TercerActivity
 import com.congreso.proyectoconia.Database.Entities.programacion
 import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
+import com.congreso.proyectoconia.R
+import com.congreso.proyectoconia.Constantes.constantes
+import com.congreso.proyectoconia.Fragments.fragmentAsistencia
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.actionsecond.*
 import kotlinx.android.synthetic.main.calificacion_layout.*
-import kotlinx.android.synthetic.main.calificacion_layout.view.*
 
 class MainAsistencia : AppCompatActivity(), fragmentAsistencia.OnClickListener {
 

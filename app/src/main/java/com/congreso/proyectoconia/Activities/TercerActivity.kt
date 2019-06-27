@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.congreso.proyectoconia.Database.Entities.ponente
 import com.congreso.proyectoconia.Database.Entities.programacion
 import com.congreso.proyectoconia.R
-import com.congreso.proyectoconia.constantes
+import com.congreso.proyectoconia.Constantes.constantes
 import com.congreso.proyectoconia.Fragments.fragment_info_ponente
 import com.congreso.proyectoconia.Fragments.fragment_info_programa
 import kotlinx.android.synthetic.main.actionsecond.*

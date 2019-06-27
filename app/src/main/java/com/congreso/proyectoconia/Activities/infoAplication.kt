@@ -1,7 +1,8 @@
-package com.congreso.proyectoconia
+package com.congreso.proyectoconia.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.congreso.proyectoconia.R
 import kotlinx.android.synthetic.main.actionsecond.*
 
 class infoAplication : AppCompatActivity() {
