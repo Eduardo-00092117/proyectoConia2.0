@@ -54,8 +54,8 @@
                                 android:orientation="vertical">
                             <TextView
                                     android:layout_width="100dp"
-                                    android:layout_height="100dp"/>
-                                    //android:drawableTop="@drawable/loginbig"/>
+                                    android:layout_height="100dp"
+                                    android:drawableTop="@drawable/loginbig"/>
 
                             <EditText
                                     android:layout_width="match_parent"

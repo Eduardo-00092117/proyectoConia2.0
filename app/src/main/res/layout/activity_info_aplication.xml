@@ -1,18 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".infoAplication">
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:background="@color/oscuro"
+                                                   tools:context=".infoAplication">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:background="#18bc9c">
         <include layout="@layout/actionsecond"/>
 
+        <TextView
+                android:layout_marginTop="40sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/oscuro"
+                android:drawableTop="@drawable/icon"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="@string/app_name"
+                  android:textSize="50sp"
+                  android:layout_gravity="center"
+                  android:gravity="center"
+                  android:layout_weight="1"
+                  android:layout_height="0dp"/>
+        <LinearLayout android:layout_width="wrap_content"
+
+                      android:layout_gravity="center"
+                      android:orientation="vertical"
+                      android:gravity="bottom"
+                      android:background="#FFFFFF"
+                      android:layout_marginBottom="30dp"
+                      android:layout_height="wrap_content">
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center"
+                          android:orientation="horizontal"
+            >
+                <TextView android:layout_width="wrap_content"
+                          android:textSize="12sp"
+                          android:text="Icons made by Flat Icons, Smashicons, Freekip, itim2101, "
+                          android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout android:layout_width="wrap_content"
+                          android:orientation="horizontal"
+                          android:layout_gravity="center"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content"
+                          android:textSize="12sp"
+                          android:text="Roundicons,monkik, dmitri13, DinosoftLabs. "
+                          android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout android:layout_width="wrap_content"
+                          android:orientation="horizontal"
+                          android:layout_gravity="center"
+                          android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content"
+                          android:textSize="12sp"
+                          android:text=" from www.flaticon.com, is licensed by CC 3.0 BY"
+                          android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center"
+                          android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content"
+                          android:textSize="12sp"
+                          android:text="And icons at my free logo at LogoMakr.com"
+                          android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

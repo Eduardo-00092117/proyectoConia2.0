@@ -318,9 +318,11 @@
                         android:id="@+id/tv_info_app"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+
                         android:gravity="center"
                         android:onClick="click"
-                        android:drawableTop="@drawable/iconinformacionnolup"
+                        android:drawableTop="@drawable/iconinformationlup"
                         android:textColor="#000"
                         android:text="Información de la aplicación"/>
                 </LinearLayout>

@@ -52,8 +52,8 @@
                                 android:orientation="vertical">
                             <TextView
                                     android:layout_width="100dp"
-                                    android:layout_height="100dp"/>
-                                    //android:drawableTop="@drawable/passwordbig" />
+                                    android:layout_height="100dp"
+                                    android:drawableTop="@drawable/passwordbig" />
 
                             <EditText android:layout_width="match_parent"
                                       android:hint="email"

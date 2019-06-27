@@ -1,193 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".Fragments.fragmentRegistro"
-             android:padding="8dp">
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/oscuro"
+              tools:context=".Fragments.fragmentRegistro"
+              android:padding="16dp">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="(*) Campos Obligatorios"
-            android:gravity="right"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Tipo (*)"/>
-
-        <Spinner
-            android:id="@+id/sp_tipo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_nombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Nombres (*)"/>
-
-        <EditText
-            android:id="@+id/et_nombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_apellido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Apellidos (*)"/>
-
-        <EditText
-            android:id="@+id/et_apellido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_correo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Correo (*)"/>
-
-        <EditText
-            android:id="@+id/et_correo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_genero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Genero (*)"/>
-
-        <Spinner
-            android:id="@+id/sp_genero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_pais"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Pais (*)"/>
-
-        <Spinner
-            android:id="@+id/sp_pais"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_carrera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Carrera (*)"/>
-
-        <Spinner
-            android:id="@+id/sp_carrera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_nivel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Nivel (*)"/>
-
-        <Spinner
-            android:id="@+id/sp_nivel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_empresa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Empresa"/>
-
-        <EditText
-            android:id="@+id/et_empresa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_formacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Formación (*)"/>
-
-        <EditText
-            android:id="@+id/et_formacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_instituto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:text="Institucion/Empresa (*)"/>
-
-        <EditText
-            android:id="@+id/et_instituto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <LinearLayout
-            android:id="@+id/ll_pass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:layout_margin="8dp"
-            android:background="#E6E0E0"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:text="Contraseña (*)"/>
-            <EditText
-                android:id="@+id/ed_pass"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#FFFFFF">
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:password="true"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:text="Confirmas contraseña (*)"/>
-            <EditText
-                android:id="@+id/ed_pass2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:password="true"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FF0909"
+                        android:text="(*) Campos Obligatorios"
+                        android:gravity="right"
+                        android:layout_marginBottom="8dp"/>
 
-        <Button
-            android:id="@+id/btn_registrarse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registrarse"/>
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:textColor="#000"
+                        android:text="Tipo (*)"/>
+
+                <Spinner
+                        android:id="@+id/sp_tipo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/tv_nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+
+                        android:textColor="#000"
+                        android:text="Nombres (*)"/>
+
+                <EditText
+                        android:id="@+id/et_nombre"
+                        android:layout_width="match_parent"
+                        android:hint="Alejandro"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/tv_apellido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:fontFamily="sans-serif-light"
+
+                        android:text="Apellidos (*)"/>
+
+                <EditText
+                        android:id="@+id/et_apellido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Torres"
+                />
+
+                <TextView
+                        android:id="@+id/tv_correo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:fontFamily="sans-serif-light"
+
+                        android:text="Correo (*)"/>
+
+                <EditText
+                        android:id="@+id/et_correo"
+                        android:layout_width="match_parent"
+                        android:hint="Hypermov2019@gmail.com"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/tv_genero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:fontFamily="sans-serif-light"
+
+                        android:text="Genero (*)"/>
+
+                <Spinner
+                        android:id="@+id/sp_genero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/tv_pais"
+                        android:fontFamily="sans-serif-light"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:text="Pais (*)"/>
+
+                <Spinner
+                        android:id="@+id/sp_pais"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/tv_carrera"
+                        android:fontFamily="sans-serif-light"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:text="Carrera (*)"/>
+
+                <Spinner
+                        android:id="@+id/sp_carrera"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/tv_nivel"
+                        android:fontFamily="sans-serif-light"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:text="Nivel (*)"/>
+
+                <Spinner
+                        android:id="@+id/sp_nivel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:fontFamily="sans-serif-light"
+                        android:id="@+id/tv_empresa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:text="Empresa"/>
+
+                <EditText
+                        android:id="@+id/et_empresa"
+                        android:layout_width="match_parent"
+                        android:hint="Importaciones.sv"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/tv_formacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:fontFamily="sans-serif-light"
+
+                        android:text="Formación (*)"/>
+
+                <EditText
+                        android:id="@+id/et_formacion"
+                        android:layout_width="match_parent"
+                        android:hint="Pregrado"
+                        android:fontFamily="sans-serif-light"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/tv_instituto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:fontFamily="sans-serif-light"
+
+                        android:text="Institucion/Empresa (*)"/>
+
+                <EditText
+                        android:id="@+id/et_instituto"
+                        android:layout_width="match_parent"
+                        android:hint="UCA"
+                        android:fontFamily="sans-serif-light"
+
+                        android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                        android:id="@+id/ll_pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:layout_margin="8dp"
+                        android:background="#56D5BD"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Contraseña (*)"/>
+                    <EditText
+                            android:id="@+id/ed_pass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="******"
+                            android:password="true"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000"
+                            android:text="Confirmas contraseña (*)"/>
+                    <EditText
+                            android:id="@+id/ed_pass2"
+                            android:hint="******"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:password="true"/>
+
+                </LinearLayout>
+
+                <Button
+                        android:id="@+id/btn_registrarse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#18bc9c"
+                        android:text="Registrarse"/>
+
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>
