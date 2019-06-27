@@ -5,11 +5,28 @@
               android:layout_height="wrap_content"
               android:layout_margin="16dp">
 
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:cardCornerRadius="16dp"
+            android:layout_below="@id/tv_cerrar"
+            android:layout_margin="1dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorPrimary">
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:cardCornerRadius="16dp"
+            android:layout_margin="8dp"
+            android:layout_height="match_parent">
+        <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/tv_titulo"
         android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="wrap_content"
-        android:textColor="#000"
+        android:textColor="@color/oscuro"
         android:padding="8dp"
         android:fontFamily="sans-serif-black"
         android:textSize="24dp"
@@ -18,9 +35,15 @@
     <TextView
         android:id="@+id/tv_descripcion"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+
         android:textColor="#000"
         android:padding="8dp"
         android:text="Descripción"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
