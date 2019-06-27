@@ -74,8 +74,6 @@ class anotacionFragment : Fragment() {
         }
 
         if(user?.email!=null){
-            Log.d("quepedo","EN EL IFFFF")
-
             view.rv_anotacion.adapter = adapter
             view.rv_anotacion.layoutManager = LinearLayoutManager(context)
 

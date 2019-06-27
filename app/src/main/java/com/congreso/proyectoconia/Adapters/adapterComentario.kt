@@ -1,22 +1,29 @@
 package com.congreso.proyectoconia.Adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.congreso.proyectoconia.Database.Entities.comentario
+import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
 import com.congreso.proyectoconia.R
+import com.congreso.proyectoconia.comentariosFragment
 import kotlinx.android.synthetic.main.fragment_comentarios.view.*
 import kotlinx.android.synthetic.main.recyclercomentarios.view.*
 
-class adapterComentario(var comentario : List<comentario>) : RecyclerView.Adapter<adapterComentario.ViewHolder>() {
+class adapterComentario(var comentario : List<comentario>, var viewModel : CONIAViewModel, var context : LifecycleOwner) : RecyclerView.Adapter<adapterComentario.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recyclercomentarios, parent, false))
     }
 
     override fun getItemCount(): Int = comentario.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.onBind(comentario[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.onBind(comentario[position], viewModel, context)
 
     internal fun setComentario(comentario : List<comentario>){
         this.comentario = comentario
@@ -24,11 +31,13 @@ class adapterComentario(var comentario : List<comentario>) : RecyclerView.Adapte
     }
 
     class ViewHolder(var view : View) : RecyclerView.ViewHolder(view){
-        fun onBind(comentario : comentario){
+        fun onBind(comentario : comentario, viewModel : CONIAViewModel, context : LifecycleOwner){
 
-            view.tv_usuario.text = comentario.fk_asistencia_comentario
-            view.tv_comentario.text = comentario.comentario
-            view.tv_hora.text = comentario.fecha + " - " + comentario.hora
+            viewModel.getUsuarioAsistencia(comentario.fk_asistencia_comentario).observe(context, Observer {
+                view.tv_usuario.text = it.correo
+                view.tv_comentario.text = comentario.comentario
+                view.tv_hora.text = comentario.fecha + " - " + comentario.hora
+            })
 
         }
     }

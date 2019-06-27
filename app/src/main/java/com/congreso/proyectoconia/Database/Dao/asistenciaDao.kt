@@ -8,6 +8,7 @@ import androidx.room.Query
 import com.congreso.proyectoconia.Database.Entities.anotacion
 import com.congreso.proyectoconia.Database.Entities.asistencia
 import com.congreso.proyectoconia.Database.Entities.programacion
+import com.congreso.proyectoconia.Database.Entities.usuario
 
 @Dao
 interface asistenciaDao {
@@ -32,6 +33,9 @@ interface asistenciaDao {
 
     @Query("SELECT progra._id, progra.numeroDia, progra.fecha, progra.lugar, progra.hora_inicio, progra.hora_fin, progra.descripcion FROM asistencia_table asis, programacion_table progra, usuario_table user WHERE asis.fk_asistencia_usuario = user._id and fk_programacion_asistencia = progra._id and user.correo = :id")
     fun getProgramaAsistencia(id : String): LiveData<List<programacion>>
+
+    @Query("SELECT * FROM asistencia_table asis, usuario_table user WHERE asis.fk_asistencia_usuario = user._id and asis._id = :id")
+    fun getUsuarioAsistencia(id : String): LiveData<usuario>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAsistencia(new: asistencia)

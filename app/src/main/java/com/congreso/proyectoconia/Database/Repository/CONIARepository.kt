@@ -170,7 +170,6 @@ class CONIARepository(
     fun getUnaAsistencia(id: String): List<asistencia> = Asistenia.getOneAsistencia(id)
     fun getContAsistencia(id : String) = Asistenia.getContAsistencia(id)
     fun deleteAllAsistencia() = Asistenia.deleteAllAsistencia()
-    fun deleteOneAsistencia(id: String) = Asistenia.deleteOneAsistencia(id)
 
     fun getProgramaAsistencia(id : String): LiveData<List<programacion>> = Asistenia.getProgramaAsistencia(id)
 
@@ -180,6 +179,8 @@ class CONIARepository(
     fun getOneAsistenciaUsuario2(id : String) : List<asistencia> = Asistenia.getOneAsistenciaUsuario2(id)
 
     fun getOneAsistenciaUsuarioPonencia(correo: String, id_programa : String): asistencia = Asistenia.getOneAsistenciaUsuarioPonencia(correo, id_programa)
+
+    fun getUsuarioAsistencia(id : String): LiveData<usuario> = Asistenia.getUsuarioAsistencia(id)
 
     //  3-------------------------------------CARRERA---------------------------------
     fun getAllCarrera(): LiveData<List<carrera>> = Carrera.getAllCarrera()
@@ -199,9 +200,7 @@ class CONIARepository(
         suspend fun insertComentario(carr: comentario) = Comentario.insertComentario(carr)
 
     fun getUnaComentario(id: String): LiveData<List<comentario>> = Comentario.getOneComentario(id)
-    fun getContComentario() = Comentario.getContComentario()
-    fun deleteAllComentario() = Comentario.deleteAllComentario()
-    fun deleteOneComentario(id: String) = Comentario.deleteOneComentario(id)
+
     //  5-------------------------------------CONTACTO------------------------------
     fun getAllContacto(): LiveData<List<contacto>> = Contacto.getAllContacto()
 

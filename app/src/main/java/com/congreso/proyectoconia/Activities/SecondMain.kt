@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -35,6 +36,7 @@ class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, program
 
     override fun onClickListenerDelete(anotacion: anotacion) {
         viewModel.deleteAnotacionApi(anotacion._id)
+        Toast.makeText(this, "Se elimino con exito!", Toast.LENGTH_LONG).show()
     }
 
     override fun onClickListener(anotacion: anotacion) {

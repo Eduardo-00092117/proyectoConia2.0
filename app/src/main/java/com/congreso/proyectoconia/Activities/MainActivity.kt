@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
     }
 
     override fun onClickComentarios(programa: programacion) {
-        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, comentariosFragment()). commit()
+        var fragment = comentariosFragment.newInstance(programa)
+        supportFragmentManager.beginTransaction().replace(R.id.mostrarinformacion, fragment). commit()
     }
 
     override fun onClickCalificacion(programa: programacion) {
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
 
     override fun onClickListenerDelete(anotacion: anotacion) {
         viewModel.deleteAnotacionApi(anotacion._id)
+        Toast.makeText(this, "Se elimino con exito!", Toast.LENGTH_LONG).show()
     }
 
     override fun onClickListener(anotacion: anotacion) {
@@ -158,10 +160,6 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
             viewModel.sincronizarAnotacion()
 
             viewModel.sincronizarTematica()
-
-            viewModel.getAllUsuario().observe(this, Observer { hola ->
-                hola?.let { Log.d("Hola", it.toString()) }
-            })
         } else{
             Toast.makeText(this, "No hay conexion a internet!!!", Toast.LENGTH_LONG).show()
         }

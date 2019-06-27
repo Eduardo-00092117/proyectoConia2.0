@@ -15,6 +15,8 @@ import java.lang.Exception
 class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
     private var repository : CONIARepository
 
+    var comentarioPersistencia : programacion? = null
+
 
     init {
         val anotacionDao = RoomDB.getDataBase(app).anotacionDao()
@@ -524,6 +526,8 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
     fun getProgramaAsistencia(id: String) : LiveData<List<programacion>> {
         return repository.getProgramaAsistencia(id)
     }
+
+    fun getUsuarioAsistencia(id : String): LiveData<usuario> = repository.getUsuarioAsistencia(id)
 
 
     //-----------------------------------------------------COMENTARIOS----------------------------------------------

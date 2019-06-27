@@ -43,10 +43,8 @@ class adapterAsistencia(var programacion : List<programacion>, var clicklistener
             view.cb_asistencia.setOnClickListener {
                 if (view.cb_asistencia.isChecked){
                     clicklistener(programacion)
-                    view.ll_botones.visibility = View.VISIBLE
                 } else{
                     clicklistener2(programacion)
-                    view.ll_botones.visibility = View.GONE
                 }
             }
 

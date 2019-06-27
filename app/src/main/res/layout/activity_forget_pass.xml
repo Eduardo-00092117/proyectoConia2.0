@@ -63,6 +63,7 @@
                                     android:id="@+id/btn_forget_accept"
                                     android:layout_margin="20dp"
                                     android:text="Restablecer"
+                                    android:padding="8dp"
                                     android:fontFamily="sans-serif-black"
                                     android:layout_height="wrap_content"
                                     android:background="#18bc9c"/>

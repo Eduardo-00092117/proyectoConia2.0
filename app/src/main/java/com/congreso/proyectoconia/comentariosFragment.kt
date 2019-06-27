@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_comentarios.*
 import kotlinx.android.synthetic.main.fragment_comentarios.view.*
 import kotlinx.android.synthetic.main.fragment_fragment_info_ponente.view.*
 import kotlinx.android.synthetic.main.fragment_fragment_info_ponente.view.tv_cerrar
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -87,14 +90,20 @@ class comentariosFragment : Fragment() {
         viewModel.comentarioAsync()
 
 
-        var adapter = adapterComentario(emptyList())
+        var adapter = adapterComentario(emptyList(), viewModel, this)
 
         view.rv_comentarios.adapter = adapter
         view.rv_comentarios.layoutManager = LinearLayoutManager(context)
 
-        view.tv_titulo.text = programa?.descripcion!! + " - " + user?.email!!
+        if (programa == null){
+            programa = viewModel.comentarioPersistencia
+        }
 
-        viewModel.getAllComentario("5d0a9e430d2c5b3f3cbe2a4d").observe(this, Observer { comentario ->
+        viewModel.comentarioPersistencia = programa
+
+        view.tv_titulo.text = programa?.descripcion!!
+
+        viewModel.getAllComentario(programa?._id!!).observe(this, Observer { comentario ->
             comentario?.let {
                 adapter.setComentario(it)
                 rv_comentarios.scrollToPosition(it.size-1)
@@ -102,7 +111,17 @@ class comentariosFragment : Fragment() {
         })
 
         view.btn_enviar.setOnClickListener{
-            viewModel.insertComentarioApi(user?.email!!, programa?._id!!, view.ed_comentario.text.toString(), "12/12/2020", "12:12 am")
+            if (view.ed_comentario.text.toString().trim() != ""){
+                var time = SimpleDateFormat("dd/MM/yyyy")
+                val currentTime = time.format(Date())
+                var date = SimpleDateFormat("hh:mm a")
+                val currentDate = date.format(Date())
+
+                viewModel.insertComentarioApi(user?.email!!, programa?._id!!, view.ed_comentario.text.toString(), currentTime, currentDate)
+                view.ed_comentario.setText("")
+            } else{
+                Toast.makeText(context, "No puede dejar el campo vacio!", Toast.LENGTH_LONG).show()
+            }
         }
 
         return view
