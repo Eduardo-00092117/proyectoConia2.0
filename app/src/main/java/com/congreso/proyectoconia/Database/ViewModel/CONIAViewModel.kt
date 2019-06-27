@@ -524,4 +524,34 @@ class CONIAViewModel(var app : Application) : AndroidViewModel(app) {
     fun getProgramaAsistencia(id: String) : LiveData<List<programacion>> {
         return repository.getProgramaAsistencia(id)
     }
+
+
+    //-----------------------------------------------------COMENTARIOS----------------------------------------------
+
+    fun insertComentario(comentario: comentario) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertComentario(comentario)
+    }
+
+    fun comentarioAsync() = viewModelScope.launch (Dispatchers.IO){
+        var response = repository.comentarioAsync().await()
+        if (response!!.isSuccessful) with(response.body()){
+            this?.forEach {
+                insertComentario(comentario(it._id, it.comentario, it.fecha, it.hora, it.asistencia[0]._id))
+            }
+        }
+    }
+
+    fun getAllComentario(id : String) = repository.getUnaComentario(id)
+
+    fun insertComentarioApi(usuario: String, id_programacion: String, comentario : String, fecha : String, hora : String) = viewModelScope.launch (Dispatchers.IO) {
+
+        var id_asistencia = getUsuarioPonencia(usuario, id_programacion)
+
+        var response = repository.setComentarioApi(id_asistencia._id, comentario, fecha, hora)
+
+        if (response.execute().isSuccessful){
+            Log.d("Hola", "Suuuuu")
+        }
+        comentarioAsync()
+    }
 }

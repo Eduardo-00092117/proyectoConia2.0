@@ -3,6 +3,7 @@ package com.congreso.proyectoconia.Activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -106,8 +107,10 @@ class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, program
                 supportFragmentManager.beginTransaction().replace(R.id.principal,tematicaFragment()).commit()
                 nombre = "Tematica"
             }
-            10 -> { //Acordarme de cambiarlo
-                supportFragmentManager.beginTransaction().replace(R.id.principal,comentariosFragment()).commit()
+            10 -> {
+                var intent = intent.getParcelableExtra<programacion>(constantes.VENTANA_PONENTE_PROGRAMACION)
+                var fragment = comentariosFragment.newInstance(intent)
+                supportFragmentManager.beginTransaction().replace(R.id.principal,fragment).commit()
                 nombre = "Comentarios"
             }
         }
@@ -133,6 +136,7 @@ class SecondMain : AppCompatActivity(), ponenteFragment.onClickListener, program
                 7 -> viewModel.sincronizarContacto()
                 8 -> viewModel.sincronizarAnotacion()
                 9 -> viewModel.sincronizarTematica()
+                10 -> viewModel.comentarioAsync()
             }
             refresh.isRefreshing = false
         }, 3000)

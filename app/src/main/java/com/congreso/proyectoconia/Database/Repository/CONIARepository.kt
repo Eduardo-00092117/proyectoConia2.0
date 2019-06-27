@@ -141,6 +141,14 @@ class CONIARepository(
         return retroFitServices.getRetrofit().updateAsistencia(id, usuario, programacion, calificacion)
     }
 
+    fun comentarioAsync() : Deferred<Response<List<modeloComentario>>> {
+        return retroFitServices.getRetrofit().getComentario()
+    }
+
+    fun setComentarioApi(asitencia: String, comentario : String, fecha : String, hora : String) : Call<comentario> {
+        return retroFitServices.getRetrofit().setComentario(asitencia, comentario, fecha, hora)
+    }
+
     //  1-------------------------------------ANOTACION------------------------------
 
     fun getAllAnotacion(correo : String): LiveData<List<anotacion>> = Anotacion.getAllAnotacione(correo)

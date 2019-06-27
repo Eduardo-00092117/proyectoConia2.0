@@ -12,7 +12,7 @@ interface comentarioDao {
     @Query("SELECT * FROM comentario_table")
     fun getAllComentario(): LiveData<List<comentario>>
 
-    @Query("SELECT comen._id, comen.comentario , comen.fecha, comen.hora , comen.fk_asistencia_comentario FROM comentario_table comen, asistencia_table asis WHERE comen.fk_asistencia_comentario = asis._id and  comen._id= :id")
+    @Query("SELECT comen._id, comen.comentario , comen.fecha, comen.hora , comen.fk_asistencia_comentario FROM comentario_table comen, asistencia_table asis WHERE comen.fk_asistencia_comentario = asis._id and asis.fk_programacion_asistencia= :id ORDER BY comen.fecha ASC, comen.hora DESC")
     fun getOneComentario(id: String): LiveData<List<comentario>>
 
     @Query("SELECT COUNT(*) FROM comentario_table")

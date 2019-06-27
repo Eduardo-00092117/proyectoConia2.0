@@ -158,6 +158,10 @@ class MainActivity : AppCompatActivity(), inicioFragment.OnFragmentInteractionLi
             viewModel.sincronizarAnotacion()
 
             viewModel.sincronizarTematica()
+
+            viewModel.getAllUsuario().observe(this, Observer { hola ->
+                hola?.let { Log.d("Hola", it.toString()) }
+            })
         } else{
             Toast.makeText(this, "No hay conexion a internet!!!", Toast.LENGTH_LONG).show()
         }

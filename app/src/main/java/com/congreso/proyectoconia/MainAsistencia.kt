@@ -32,6 +32,7 @@ class MainAsistencia : AppCompatActivity(), fragmentAsistencia.OnClickListener {
     override fun onClickComentarios(programa: programacion) {
         var intent = Intent(this, SecondMain::class.java)
         intent.putExtra(constantes.VENTANA_SECUNDARIA_SIN_USUARIO, 10)
+        intent.putExtra(constantes.VENTANA_PONENTE_PROGRAMACION, programa)
         startActivity(intent)
     }
 

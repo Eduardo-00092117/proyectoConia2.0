@@ -2,12 +2,24 @@ package com.congreso.proyectoconia
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.congreso.proyectoconia.Adapters.adapterComentario
+import com.congreso.proyectoconia.Database.Entities.comentario
+import com.congreso.proyectoconia.Database.Entities.programacion
+import com.congreso.proyectoconia.Database.ViewModel.CONIAViewModel
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_comentarios.*
+import kotlinx.android.synthetic.main.fragment_comentarios.view.*
 import kotlinx.android.synthetic.main.fragment_fragment_info_ponente.view.*
+import kotlinx.android.synthetic.main.fragment_fragment_info_ponente.view.tv_cerrar
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,8 +55,19 @@ class comentariosFragment : Fragment() {
         fun onClickListener3()
     }
 
+    var programa : programacion? = null
+
+    companion object {
+        fun newInstance(programa : programacion) : comentariosFragment{
+            var instance = comentariosFragment()
+            instance.programa = programa
+            return instance
+        }
+    }
 
 
+    val auth = FirebaseAuth.getInstance()
+    val user = auth.currentUser
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +80,29 @@ class comentariosFragment : Fragment() {
             view.tv_cerrar.setOnClickListener {
                 listener?.onClickListener3()
             }
+        }
+
+        var viewModel = ViewModelProviders.of(this).get(CONIAViewModel::class.java)
+
+        viewModel.comentarioAsync()
+
+
+        var adapter = adapterComentario(emptyList())
+
+        view.rv_comentarios.adapter = adapter
+        view.rv_comentarios.layoutManager = LinearLayoutManager(context)
+
+        view.tv_titulo.text = programa?.descripcion!! + " - " + user?.email!!
+
+        viewModel.getAllComentario("5d0a9e430d2c5b3f3cbe2a4d").observe(this, Observer { comentario ->
+            comentario?.let {
+                adapter.setComentario(it)
+                rv_comentarios.scrollToPosition(it.size-1)
+            }
+        })
+
+        view.btn_enviar.setOnClickListener{
+            viewModel.insertComentarioApi(user?.email!!, programa?._id!!, view.ed_comentario.text.toString(), "12/12/2020", "12:12 am")
         }
 
         return view
@@ -90,24 +136,4 @@ class comentariosFragment : Fragment() {
      * (http://developer.android.com/training/basics/fragments/communicating.html)
      * for more information.
      */
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment comentariosFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                comentariosFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
-    }
 }

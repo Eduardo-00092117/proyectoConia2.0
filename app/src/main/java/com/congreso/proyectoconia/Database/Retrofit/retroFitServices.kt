@@ -2,6 +2,7 @@ package com.congreso.proyectoconia.Database.Retrofit
 
 import com.congreso.proyectoconia.Database.Entities.anotacion
 import com.congreso.proyectoconia.Database.Entities.asistencia
+import com.congreso.proyectoconia.Database.Entities.comentario
 import com.congreso.proyectoconia.Database.Entities.usuario
 import com.congreso.proyectoconia.Database.ModelsRetrofit.*
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -67,6 +68,9 @@ interface retroFitServices {
     @GET("/asistencia")
     fun getAsistencia() : Deferred<Response<List<modeloAsistencia>>>
 
+    @GET("/comentario")
+    fun getComentario() : Deferred<Response<List<modeloComentario>>>
+
     @FormUrlEncoded
     @POST("/usuario")
     fun setUsuario(@Field("nombre") nombre : String,
@@ -117,6 +121,13 @@ interface retroFitServices {
                          @Field("usuario") usuario : String,
                          @Field("programacion") programacion : String,
                          @Field("calificacion") calificacion : Float) : Call<asistencia>
+
+    @FormUrlEncoded
+    @POST("/comentario")
+    fun setComentario(@Field("asistencia") asistencia : String,
+                      @Field("comentario") comentario : String,
+                      @Field("fecha") fecha : String,
+                      @Field("hora") hora : String) : Call<comentario>
 
     companion object {
         fun getRetrofit():retroFitServices{
